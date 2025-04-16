@@ -3,6 +3,7 @@ title: My Home Lab Active Directory Network
 date: 2025-02-02 12:00:00 -500
 categories: [homelab]
 tags: [proxmox,tp-link] #TAG names should always be lowercase
+description: My Home Lab Network Overview "A blog post detailing my home lab network setup with Microsoft Active Directory."
 ---
 
 # Home Lab Network 

@@ -1,0 +1,48 @@
+--- --- @use 'main
+ {
+    %- if jekyll.environment=='production' -%
+}
+
+.bundle {
+    %- endif -%
+}
+
+';
+
+/* append your custom style below */
+
+.container {
+    margin: 2rem auto;
+
+    .intro,
+    .about,
+    .education-certifications,
+    .portfolio,
+    .contact {
+        border-bottom: 1px solid #dee2e6;
+        /* Replace with a hardcoded value */
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .portfolio .card {
+        border: 1px solid #dee2e6;
+        border-radius: 0.5rem;
+        /* Replace with a hardcoded value */
+        background-color: #c1c2c2;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+
+        .card-body {
+            padding: 1rem;
+
+            .card-title {
+                font-weight: bold;
+                color: #212529;
+            }
+
+            .card-text {
+                color: #6c757d;
+            }
+        }
+    }
+}

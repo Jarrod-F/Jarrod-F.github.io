@@ -1,9 +1,87 @@
 ---
-layout: home
+layout: page
+Title: Portfolio
 # Index page
 ---
 
-<h1>Portfolio page</h1> 
-<h2>About me</h2>
-Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam quod in cum, repudiandae maxime modi a ut aliquam laboriosam voluptatem culpa fuga temporibus animi, blanditiis magnam reiciendis. Ea, exercitationem?
-<h2>Certifications</h2>
+<div class="container">
+    <!-- Intro Section -->
+    <div class="intro text-center">
+        <h1>Welcome to My Portfolio</h1>
+        <p>Explore my key IT projects, certifications, and technical expertise below.</p>
+        <hr>
+    </div>
+
+    <!-- About Me Section -->
+    <div class="about text-center">
+        <h2>About Me</h2>
+        <p>
+            With hands-on IT experience and a background in network and server administration,
+            I’m passionate about troubleshooting and optimizing systems. This site showcases my
+            projects and technical documentation for reference.
+        </p>
+    </div>
+
+    <!-- Education & Certifications Section -->
+    <div class="row education-certifications">
+        <div class="col-md-6">
+            <h3>Education</h3>
+            <ul>
+                <li>
+                    Associates of Applied Science (AAS) in Network & Server Administration,
+                    North Seattle College (2024)
+                </li>
+                <li>
+                    Bachelor of Arts (BA) in Communications, University of Washington (Graduated with honors)
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h3>Certifications</h3>
+            <ul>
+                <li>CompTIA A+ | CompTIA Network+ | AI Foundations Certificate (LinkedIn Learning)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Portfolio Highlights Section -->
+    <div class="portfolio">
+        <h2 class="text-center">Portfolio Highlights</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">VLAN Configuration</h5>
+                        <p class="card-text">Configured multi-router VLAN for secure network scalability.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Proxmox Deployment</h5>
+                        <p class="card-text">Installed and managed hypervisors, deploying Windows Server 2022 with AD,
+                            DNS, and DHCP.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Troubleshooting Documentation</h5>
+                        <p class="card-text">Documented procedures for diagnosing DNS and VLAN issues.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="contact text-center">
+        <h2>Contact</h2>
+        <p>Let’s connect:</p>
+        <a href="https://linkedin.com/in/jarrod-fueston" class="btn btn-primary portfolio-linkedin-icon">
+        <i class="fa-brands fa-linkedin-in fa-5x"></i>
+        </a>
+    </div>
+</div>
