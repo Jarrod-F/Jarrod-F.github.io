@@ -4,19 +4,31 @@ permalink: "/"
 ---
 <!-- Hero / Intro -->
 <section class="intro text-center mb-5">
-  <h1 class="display-4">Welcome — I’m Jarrod</h1>
+  <h1 class="display-4">Welcome — I'm Glad You're Here!</h1>
   <p class="lead">
-    Entry‑level IT Support Specialist with practical experience in networking, system administration & virtualization.
-    Explore the site to dive into my home‑lab network projects documentation, Explore the site to dive into my home‑lab
-    network projects, step‑by‑step how‑tos, and more..
+    Entry-level IT Support Specialist with real-world experience in networking, systems administration, and
+    virtualization. Explore my home-lab network projects, hands-on technical guides, and step-by-step troubleshooting
+    walk-throughs.
   </p>
   <p>
-    This site doubles as my public portfolio and a living technical reference—use the categories and tags to zero in on
-    topics, or follow step‑by‑step guides from start to finish.
+    This site is both my public portfolio and a technical reference — designed to showcase real-world implementations,
+    not just theory. Browse by category or tag to explore projects, or follow complete setups from start to finish.
   </p>
+  <p class="note-text">
+    Note: Additional projects from my home-lab enterprise network simulation and independent IT studies are actively
+    being published as I continue building out this living technical portfolio site.
+  </p>
+
   <div class="mt-4">
     <a href="https://www.linkedin.com/in/jarrod-fueston/" class="btn btn-primary me-2" target="_blank">LinkedIn</a>
-    <a href="/assets/files/resume.pdf" class="btn btn-outline-secondary" download target="_blank">Download Resume</a>
+    <a
+      href="{{ '/assets/files/Jarrod-Fueston-Resume.pdf' | relative_url }}"
+      class="btn btn-outline-secondary resume-button"
+      download
+      target="_blank"
+    >
+      Download Resume
+    </a>
   </div>
 </section>
 
@@ -25,12 +37,27 @@ permalink: "/"
 <!-- About Me -->
 <section class="about text-center mb-5">
   <h2 class="section-heading">About Me</h2>
+
   <p>
-    I hold an AAS in Network &amp; Server Administration and a BA in Communications (UW, honors), and I’ve been
-    self‑employed since June 2024 building and documenting a multi‑router, VLAN‑segmented home lab. Using Proxmox VE, I
-    deployed Windows Server 2022 with Active Directory, DNS, DHCP, Group Policy Objects, and a structured OU hierarchy
-    to mimic real‑world enterprises. I troubleshoot connectivity, firewall rules, and misconfigurations, document every
-    step in detail, and even assemble workstations and terminate RJ45 cabling to sharpen hands‑on skills.
+    I’m an IT professional with an AAS in Network & Server Administration, a BA in Communications, and multiple
+    technical certifications including CompTIA A+ and Network+.
+  </p>
+
+  <p>
+    In June 2024, I built a structured home‑lab environment that simulates a real‑world small‑business network. I
+    designed its physical layout and logical topology—implementing VLAN segmentation, multi‑router configurations, and
+    managed‑switch setups—then deployed Windows Server 2022 on a Proxmox bare‑metal hypervisor. I configured Active
+    Directory, DNS, DHCP, and GPOs to manage user access and security across departmental subnets.
+  </p>
+
+  <p>
+    Since then, I’ve been honing my skills through hands‑on experimentation, trying out new configurations, troubleshooting real‑world issues, and gradually expanding the lab’s capabilities as time allows. Throughout the process, I’ve troubleshot real‑world issues like DNS resolution failures, VLAN misconfigurations, and GPO application conflicts—documenting every step in detail to refine my troubleshooting workflow.
+  </p>
+
+  <p>
+    Beyond technical work, I bring leadership and communication skills honed in retail management and freelance
+    web‑development roles. When I’m not working on my home lab, I enjoy hiking and staying active — and I’m always
+    learning. I’m currently expanding my skills in AI‑powered IT workflows including enrollment in HarvardX’s CS50: AI with Python course.
   </p>
 </section>
 
@@ -38,7 +65,7 @@ permalink: "/"
 
 <!-- Education -->
 <section class="education mb-5">
-  <h2 class="section-heading">Education</h2>
+  <h2 class="section-heading text-center">Education</h2>
   <div class="row">
     <!-- AAS first -->
     <div class="col-md-6 mb-4">
@@ -58,65 +85,123 @@ permalink: "/"
 <hr class="divider">
 
 <!-- Certifications -->
+<!-- Certifications -->
 <section class="certifications mb-5">
   <h2 class="section-heading text-center mb-4">Certifications</h2>
-
-  <div class="d-flex flex-wrap justify-content-center gap-4">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
     <!-- CompTIA A+ -->
-    <div class="text-center m-2">
+    <div class="col text-center">
       <img
-        src="{{ '/assets/images/badges/Aplus-Logo-Certified-CE.png' | relative_url }}"
+        src="{{ '/assets/img/badges/Aplus-Logo-Certified-CE.png' | relative_url }}"
         alt="CompTIA A+ Badge"
-        class="img-fluid badge-img mb-1"
+        class="img-fluid badge-img mb-2"
       >
       <div class="small">
         CompTIA A+<br>
-        Cred ID: 28B0M7ZSQFRE17SZ
+        Cred ID: 28B0M7ZSQFRE17SZ
       </div>
     </div>
 
     <!-- CompTIA Network+ -->
-    <div class="text-center m-2">
+    <div class="col text-center">
       <img
-        src="{{ '/assets/images/badges/comptia-network-certification-badge.png' | relative_url }}"
+        src="{{ '/assets/img/badges/comptia-network-certification-badge.png' | relative_url }}"
         alt="CompTIA Network+ Badge"
-        class="img-fluid badge-img mb-1"
+        class="img-fluid badge-img mb-2"
       >
       <div class="small">
         CompTIA Network+<br>
-        Cred ID: 6VB0JYJQSBQ11HC0
+        Cred ID: 6VB0JYJQSBQ11HC0
       </div>
     </div>
-      <!-- CompTIA CIOS -->
-       <div class="text-center m-2">
+
+    <!-- CompTIA CIOS -->
+    <div class="col text-center">
       <img
-        src="{{ '/assets/images/badges/comptia-network-certification-badge.png' | relative_url }}"
-        alt="CompTIA Network+ Badge"
-        class="img-fluid badge-img mb-1"
+        src="{{ '/assets/img/badges/CompTIA_Cert_CIOS.png' | relative_url }}"
+        alt="CompTIA CIOS Badge"
+        class="img-fluid badge-img mb-2"
       >
       <div class="small">
-        CompTIA Network+<br>
-        Cred ID: 6VB0JYJQSBQ11HC0
+        CompTIA CIOS<br>
+        Cred ID: COMP10464925
+      </div>
+    </div>
+
+    <!-- TestOut PC Pro -->
+    <div class="col text-center">
+      <img
+        src="{{ '/assets/img/badges/TestOut-PC-Pro Certification.png' | relative_url }}"
+        alt="TestOut PC Pro Badge"
+        class="img-fluid badge-img mb-2"
+      >
+      <div class="small">
+        TestOut PC Pro<br>
+        Cred ID: 6-2C6-V3N9PR
+      </div>
+    </div>
+
+    <!-- AWS Academy Cloud Foundations -->
+    <div class="col text-center">
+      <img
+        src="{{ '/assets/img/badges/aws-cloud-foundations.png' | relative_url }}"
+        alt="AWS Academy Cloud Foundations Badge"
+        class="img-fluid badge-img mb-2"
+      >
+      <div class="small">
+        AWS Academy Graduate<br>
+        AWS Academy Cloud Foundations
+      </div>
+    </div>
+
+    <!-- FOA CFOT -->
+    <div class="col text-center">
+      <img
+        src="{{ '/assets/img/badges/Certified-Fiber Optic-Technician CFOT-badge.jpg' | relative_url }}"
+        alt="Fiber Optic Technician Badge"
+        class="img-fluid badge-img mb-2"
+      >
+      <div class="small">
+        Certified Fiber Optic Technician (CFOT)<br>
+        Cred ID: 3380305
       </div>
     </div>
   </div>
 </section>
 
-
 <hr class="divider">
 
-<!-- Skills & Tech Stack -->
+<!-- Key Skills & Tech Stack -->
 <section class="skills mb-5">
-  <h2 class="section-heading text-center mb-4">Skills & Tech Stack</h2>
-  <div class="row row-cols-2 row-cols-sm-4 g-3 justify-content-center text-center">
-    <div class="col"><span class="badge bg-secondary py-2 px-3">Active Directory</span></div>
-    <div class="col"><span class="badge bg-secondary py-2 px-3">DNS/DHCP</span></div>
-    <div class="col"><span class="badge bg-secondary py-2 px-3">VLANs</span></div>
-    <div class="col"><span class="badge bg-secondary py-2 px-3">Proxmox VE</span></div>
-    <div class="col"><span class="badge bg-secondary py-2 px-3">pfSense Firewall</span></div>
-    <div class="col"><span class="badge bg-secondary py-2 px-3">Windows Server</span></div>
-    <div class="col"><span class="badge bg-secondary py-2 px-3">Linux CLI</span></div>
-    <div class="col"><span class="badge bg-secondary py-2 px-3">Troubleshooting</span></div>
+  <h2 class="section-heading text-center mb-4">Key Skills & Tech Stack</h2>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-5 justify-content-center text-center">
+    <div class="col">
+      <span class="badge rounded-pill bg-secondary py-4 px-4"> Networking (TCP/IP, DNS, DHCP) </span>
+    </div>
+    <div class="col">
+      <span class="badge rounded-pill bg-secondary py-4 px-4"> Windows Server 2022 </span>
+    </div>
+    <div class="col">
+      <span class="badge rounded-pill bg-secondary py-4 px-4"> Active Directory &amp; Group Policy </span>
+    </div>
+    <div class="col">
+      <span class="badge rounded-pill bg-secondary py-4 px-4"> VLANs &amp; Subnetting (VLSM) </span>
+    </div>
+    <div class="col">
+      <span class="badge rounded-pill bg-secondary py-4 px-4"> Router & Switch Configuration </span>
+    </div>
+    <div class="col">
+      <span class="badge rounded-pill bg-secondary py-4 px-4"> Virtualization (Proxmox & Hyper-V) </span>
+    </div>
+    <div class="col">
+      <span class="badge rounded-pill bg-secondary py-4 px-4"> Windows Desktop Administration </span>
+    </div>
+    <div class="col">
+      <span class="badge rounded-pill bg-secondary py-4 px-4"> IT Security Fundamentals </span>
+    </div>
+    <div class="col">
+      <span class="badge rounded-pill bg-secondary py-4 px-4"> IT Troubleshooting & User Support </span>
+    </div>
   </div>
 </section>
 
@@ -167,8 +252,14 @@ permalink: "/"
 <!-- Bottom Contact -->
 <section class="contact text-center mb-5">
   <h2 class="section-heading">Let’s Connect</h2>
-  <p>Ready to talk tech or browse more lab docs?</p>
-  <a href="https://github.com/yourname" class="btn btn-dark me-2" target="_blank">GitHub</a>
+  <p>Ready to talk tech or more about my lab docs?</p>
   <a href="https://www.linkedin.com/in/jarrod-fueston/" class="btn btn-primary me-2" target="_blank">LinkedIn</a>
-  <a href="/assets/files/resume.pdf" class="btn btn-outline-secondary" download target="_blank">Download Resume</a>
+  <a
+    href="{{ '/assets/files/Jarrod-Fueston-Resume.pdf' | relative_url }}"
+    class="btn btn-outline-secondary resume-button"
+    download
+    target="_blank"
+  >
+    Download Resume
+  </a>
 </section>

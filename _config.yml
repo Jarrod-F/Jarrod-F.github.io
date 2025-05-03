@@ -39,12 +39,11 @@ social:
   #email: example@domain.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/username # change to your Twitter homepage
+    #- https://twitter.com/username # change to your Twitter homepage
     - https://github.com/Jarrod-F # change to your GitHub homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
-    # - https://www.linkedin.com/in/username
-
+    - https://www.linkedin.com/in/jarrod-fueston/
 # Site Verification Settings
 webmaster_verifications:
   google: # fill in your Google verification code
@@ -93,13 +92,13 @@ theme_mode: # [light | dark]
 
 # The CDN endpoint for media resources.
 # Notice that once it is assigned, the CDN url
-# will be added to all media resources (site avatar, posts' images, audio and video files) paths starting with '/'
+# will be added to all media resources (site avatar, posts' img, audio and video files) paths starting with '/'
 #
 # e.g. 'https://cdn.com'
 cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar:
+avatar: /assets/img/avatar/chirpy-avatar.png
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
