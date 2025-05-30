@@ -16,6 +16,27 @@ h1 {
   // color: rgba(171, 135, 42, 0.72);
 }
 
+/* Space b4 and after post images */
+
+img[src*="/assets/img/posts/"] {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Space b4 and after post tables */
+
+.table-wrapper {
+  margin-top: 2.3rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Space b4 and after prompt-tips */
+blockquote {
+  margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+
 /* Styled horizontal rule for section breaks */
 hr.divider {
   border: none;
