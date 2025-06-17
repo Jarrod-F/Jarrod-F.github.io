@@ -6,7 +6,7 @@ tags: [proxmox, windows-server, server-2022, virtio, vm, configuration]
 ---
 
 > **Project Origin:** *This project was undertaken as part of the "Special LAN Projects" elective during my academic program. It involved the complete lifecycle from hardware selection and preparation to OS installation, network configuration, and comprehensive documentation.*
-{: .prompt-info }
+{: .prompt-info}
 
 ## Introduction
 

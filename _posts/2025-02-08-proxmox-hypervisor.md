@@ -85,7 +85,7 @@ Once my TP-Link router and Xnyahitog switch were configured for the new lab netw
 
 ---
 
-## Conclusion
+## Key Learnings & Takeaways
 
 Installing Proxmox VE was a largely straightforward process, though my project timeline required an unconventional workflow. Having to install the hypervisor before the network was finalized led to a valuable hands-on exercise in manual Linux network configuration. This experience directly reinforced my command-line skills and understanding of Linux networking files, bridging the gap between classroom theory and practical application.
 

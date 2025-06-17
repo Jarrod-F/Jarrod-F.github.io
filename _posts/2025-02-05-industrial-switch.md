@@ -221,7 +221,7 @@ To verify proper VLAN configuration and connectivity:
 
 ---
 
-## Conclusion
+## Key Learnings & Takeaways
 
 The Xnyahitog XY-M2F8P managed switch, when correctly integrated with the TP-Link router and the ISP router, provides a robust and flexible foundation for a home lab network. This configuration enables effective VLAN management and network segmentation, which can significantly enhance both security and performance by isolating traffic and controlling communication paths.
 

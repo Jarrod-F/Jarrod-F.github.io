@@ -109,32 +109,29 @@ Before starting the router configuration, I installed the **Omada Controller Sof
         * `ipconfig /flushdns`: Clears the local DNS resolver cache.
         * `ipconfig /release`: Releases the current DHCP-assigned IP address lease.
         * `ipconfig /renew`: Requests a new IP address lease from the DHCP server.
-
-### Troubleshooting
-
-1.  **VLAN 10 Connectivity Issues:**
-    * *Symptoms:* Devices connected to switch ports assigned to VLAN 10 could not obtain an IP address via DHCP or communicate on the network after the `LAN1` port change described in Configuration Step #2 & #3.
-    * *Steps Taken:*
-        * Double-checked VLAN settings (ID, subnet, gateway, DHCP range), interface assignments, and switch profile configurations on the router (Omada Controller).
-        * Verified corresponding VLAN settings and port assignments (access port PVID, trunk port tagging) on the managed switch.
-        * Rebooted both the switch and the router multiple times.
-        * Deleted and recreated the VLAN 10 settings and its associated switch profile on the router.
-        * Conducted extensive online research for similar issues with TP-Link Omada setups.
-        * Contacted TP-Link support, who ultimately suggested a factory reset of the router.
-  
-    * *Solution:* Before resorting to a factory reset, I attempted a last troubleshooting step:
-        *  Deleted **VLAN 10** configuration entirely from *both* the router and the switch.
-        * Recreated the VLAN using a new ID (VLAN 11) and reassigned interface roles.
-        * Configured the corresponding switch profile for VLAN 11 on the router and the necessary VLAN settings (port assignments, tagging) on the switch.
-        * Rebooted both devices.
-         
-
-This resolved the connectivity issue, suggesting a persistent configuration glitch related specifically to the VLAN ID 10 after the initial port assignment change. **This experience underscored a valuable lesson:** before resorting to a full device factory reset and losing all configurations, when standard troubleshooting for a specific element (like recreating VLAN 10 with the same ID) repeatedly fails, a more targeted yet fundamental change—like altering the problematic ID itself (e.g., to VLAN 11)—can be a highly effective intermediate step.
-
-It highlighted that network device configurations can occasionally retain 'ghost' settings or states that aren't cleared by simple reconfigurations of the same identifier, and that forcing the use of a new ID can circumvent this without requiring a complete system wipe, thereby saving significant reconfiguration time.
-
 ---
 
+## Troubleshooting & Key Learnings
+
+### 1. VLAN 10 Connectivity Issues
+
+* **Symptom:** Devices connected to switch ports assigned to VLAN 10 could not obtain an IP address or communicate on the network after the physical trunk port was moved from `WAN/LAN2` to `LAN1`.
+* **Steps Taken:** I double-checked all settings, rebooted devices, deleted and recreated the VLAN 10 configuration, and even contacted TP-Link support, who suggested a factory reset.
+* **Solution:** Before resorting to a factory reset, I attempted one final approach:
+    1.  Deleted the problematic **VLAN 10** configuration entirely from *both* the router and the switch.
+    2.  Created a **new VLAN** using a different ID, **VLAN 11**, with the same intended network settings.
+    3.  Reconfigured the switch profile and switch port assignments for the new VLAN 11.
+    4.  Rebooted both devices. This resolved the connectivity issue.
+
+### 2. Key Learnings & Takeaways
+
+This project provided several practical learning experiences beyond standard configuration:
+
+* **"Ghost" Configurations Can Exist:** The VLAN 10 issue highlighted that network devices can sometimes retain a problematic state or 'ghost' configuration related to a specific ID that isn't cleared by simple reconfigurations or reboots. Circumventing the problematic element by using a new identifier (VLAN 11 instead of 10) was a highly effective troubleshooting step before resorting to a complete factory reset, saving significant time.
+* **Verify Auto-Generated Settings:** I learned not to implicitly trust automatically generated configurations. The "Switch Profiles" created by the Omada Controller were incompatible with my network design and required manual deletion and recreation. This emphasizes the importance of verifying every setting, even those created by the system.
+* **Methodical Testing is Essential:** The process of testing each VLAN individually after configuration changes was crucial for isolating the problem to a single VLAN, which greatly narrowed the scope of troubleshooting.
+
+<!--
 ## Next Steps and Future Implementations
 
 The TP-Link router offers numerous features to enhance network security and performance. Based on the initial setup, my planned next steps involve implementing and testing the following:
@@ -143,13 +140,9 @@ The TP-Link router offers numerous features to enhance network security and perf
 * **URL Filtering:** Implement URL filtering to block access to specific websites, potentially improving security and productivity within the lab environment.
 * **MAC Filtering:** Configure MAC filtering to allow only devices with explicitly permitted MAC addresses to connect to the network (or specific VLANs), adding another barrier against unauthorized access.
 
-![Security Features Menu Example](/assets/img/posts/tplink-router/tplink-router-6.png)
-*Figure 6:Tp-Link router some of the advanced security features.*
-
 Additionally, after strengthening the security posture, I plan to explore and test specific features within the VLAN settings further:
 
 * **IGMP Snooping:** Enable and configure IGMP Snooping to optimize multicast traffic management. This can improve network efficiency, especially if using applications that rely on multicast, by preventing multicast data from flooding ports unnecessarily.
 
 Finally, I will continue exploring other advanced features related to network security, transmission optimization, and potentially VPN configurations to further refine the home lab network's performance, security, and capabilities.
-
-I hope you found this useful, if you have any questions, feel free to reach out to me on LinkedIn.
+-->

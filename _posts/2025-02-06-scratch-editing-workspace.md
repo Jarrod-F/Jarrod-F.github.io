@@ -1,165 +1,211 @@
 ---
-title: ChatGPT Version Microsoft Server 2022 Install on Proxmox Hypervisor  
-date: 2025-05-25  
-categories: [Virtualization, Home Lab, Technical-Documentation]  
-tags: [proxmox, windows-server, server-2022, virtio, vm, configuration]  
+title: Scratch Active Directory Configuration Guide
+date: 2025-05-30
+excerpt: "Step-by-step guide to install and configure Active Directory Domain Services, DNS, OUs, user accounts, Group Policies, and file permissions in a home lab environment, with troubleshooting tips."
+categories: [Active Directory, Home Lab, Windows Server, Academic-Project]
+tags: [active-directory, ad-ds, dns, gpo, ou, windows-server]
+last_modified_at: 2025-05-30
 ---
+
+> **Context:** This guide documents my end-to-end process for setting up Active Directory Domain Services (AD DS), DNS, Organizational Units, Group Policies, and file permissions in a home lab—complete with challenges faced and solutions implemented.  
+{: .prompt-info}
 
 ## Introduction
 
-After successfully installing the Proxmox hypervisor on a test laptop and confirming network connectivity via the web GUI from another VLAN, I proceeded to install **Microsoft Server 2022** as a VM on Proxmox.
+After installing Microsoft Server 2022 and configuring its network settings, I proceeded to set up Active Directory (AD) to manage user accounts, groups, and resources. This involved:
 
-During this process I encountered an access issue: my main PC could not reach the Proxmox GUI while two other devices—one on the same VLAN and one on a different VLAN—could. I ruled out browser conflicts (tested multiple browsers and private/incognito mode) and network issues (`ping`, `tracert`). Ultimately the culprit was Windows Defender Firewall on my PC. I resolved it by creating a firewall rule for the Proxmox management port (8006) and refreshing the network adapter. Detailed troubleshooting steps are in the **Troubleshooting** section.
+- Installing and configuring AD DS and DNS.
+- Creating Organizational Units (OUs) and user accounts.
+- Designing and applying Group Policies (GPOs).
+- Securing file and folder permissions.
 
----
-
-## Initial Setup
-
-1. **Download Windows Server 2022 ISO**  
-   - Go to the [Microsoft Evaluation Center](https://www.microsoft.com/evalcenter) and download the 64-bit ISO.  
-   - (Optional) Direct ISO: `https://www.microsoft.com/.../Server2022EVAL.iso`
-
-2. **Obtain VirtIO Drivers for KVM**  
-   - Download the VirtIO drivers ISO from the [Proxmox VE download page](https://pve.proxmox.com/wiki/Download).  
-   - _Tip_: After uploading the Server ISO to Proxmox storage, you can copy the VirtIO download link directly from the Proxmox UI (“Copy Link” → paste in browser) instead of downloading manually.
+Throughout, I documented troubleshooting steps to showcase my problem-solving approach.
 
 ---
 
-## Configuration Steps
+## Prerequisites & Planning
 
-1. **Upload ISOs to Proxmox**  
-   1. Access the Proxmox web UI.  
-   2. In the left-hand pane, select your storage (e.g., `local`).  
-   3. Click the **ISO Images** tab, then **Upload**.  
-      - Click <kbd>Select File</kbd> and choose the **Windows Server 2022 ISO**.  
-      - _Do not_ alter the auto-generated path.  
-      
-   ![Upload ISO to Proxmox](/assets/img/posts/ms-server-2022-proxmox/ms-server-2022-proxmox-img1.png)  
-   *Figure 1: Uploading the Server 2022 ISO.*
+1. **DNS readiness:**  
+   Ensure clients can resolve the domain controller’s hostname, either by setting the server as primary DNS or configuring DNS forwarding.
 
-2. **Create the VM**  
-   1. Click **Create VM** in the top-right of the Proxmox UI.  
-   2. **General** tab  
-      - **Name**: `MS-Server22`  
-      - **Start at boot**: ✔️  
-   3. **OS** tab  
-      - **Type**: Windows  
-      - **Version**: `11/2022/2025`  
-      - **CD/DVD**: select your uploaded Server 2022 ISO  
-      
-      ![Select ISO in VM wizard](/assets/img/posts/ms-server-2022-proxmox/ms-server-2022-proxmox-img2.png)  
-      *Figure 2: OS tab settings.*  
-      
-   4. **System** tab  
-      - **SCSI Controller**: VirtIO SCSI  
-      - **Add TPM**: ✔️  
-      
-      ![System tab settings](/assets/img/posts/ms-server-2022-proxmox/ms-server-2022-proxmox-img3.png)  
-      *Figure 3: System tab settings.*  
-      
-   5. **Disks** tab  
-      - Adjust **Disk size** as needed  
-      - **Cache**: Write back  
-      
-      ![Disk settings](/assets/img/posts/ms-server-2022-proxmox/ms-server-2022-proxmox-img4.png)  
-      *Figure 4: Disk tab settings.*  
-      
-   6. **CPU** tab  
-      - **Type**: host (avoids unsupported socket types)  
-      - Configure **Sockets** & **Cores** per your hardware  
-      
-      ![CPU settings](/assets/img/posts/ms-server-2022-proxmox/ms-server-2022-proxmox-img5.png)  
-      *Figure 5: CPU tab settings.*  
-      
-   7. **Memory** tab  
-      - Allocate RAM (e.g., 4 GB)  
-      - **Ballooning Device**: enabled, min 512 MB  
-      
-      ![Memory settings](/assets/img/posts/ms-server-2022-proxmox/ms-server-2022-proxmox-img6.png)  
-      *Figure 6: Memory tab settings.*  
-      
-   8. **Network** tab  
-      - **Model**: VirtIO (best performance)  
-      
-      ![Network settings](/assets/img/posts/ms-server-2022-proxmox/ms-server-2022-proxmox-img7.png)  
-      *Figure 7: Network tab settings.*  
-      
-   9. Click **Finish** to create the VM.
+> **Tip:** Plan for role reversal when the server trial expires—document DNS/DHCP settings and back up AD DS data via `<kbd>dcpromo</kbd>` before demotion.  
+{: .prompt-tip}
 
-3. **Start the VM and Install**  
-   1. In the left pane, right-click your VM → **Start**.  
-   2. Click the **>_ Console** button to open the VM display.  
-   3. Proceed through the Windows Server installer. When prompted “Where do you want to install?”, you’ll see **No drives found**—this is expected until VirtIO drivers are loaded.  
-      
-      ![No drives found warning](/assets/img/posts/ms-server-2022-proxmox/ms-server-2022-proxmox-img8.png)  
-      *Figure 8: “No drives found” warning.*  
-      
-   4. Click **Load driver**, browse to the VirtIO CD drive:  
-      1. `vioscsi\2k22\amd64` → select **Red Hat VirtIO SCSI pass-through controller** → **Next**.  
-      2. Repeat for `NetKVM\2k22\amd64` (**Red Hat VirtIO Ethernet Adapter**).  
-      3. Repeat for `Balloon\2k22\amd64` (**VirtIO Balloon Driver**).  
-      
-      ![Load VirtIO drivers](/assets/img/posts/ms-server-2022-proxmox/ms-server-2022-proxmox-img9.png)  
-      *Figure 9: Loading VirtIO drivers.*  
-      
-   5. Complete the installation and reboot as prompted.  
-   6. When the login screen does not immediately appear, click the left arrow on the console pane, then the **A** button, then the three-square icon to reveal the Windows login.  
-      
-      ![Access login UI](/assets/img/posts/ms-server-2022-proxmox/ms-server-2022-proxmox-img10.png)  
-      *Figure 10: Revealing the login screen.*  
-      
-   7. Log in with your administrator credentials.  
-      
-      ![Server Manager dashboard](/assets/img/posts/ms-server-2022-proxmox/ms-server-2022-proxmox-img11.png)  
-      *Figure 11: Server Manager Dashboard.*  
-
-4. **Post-Installation Tasks**  
-   1. On the Windows desktop, open **File Explorer**, navigate to the VirtIO CD, and run `virtio-win-gt-x64.msi` to install any remaining drivers.  
-      
-      ![VirtIO installer](/assets/img/posts/ms-server-2022-proxmox/ms-server-2022-proxmox-img12.png)  
-      *Figure 12: Running the VirtIO installer.*  
-      
-   2. Configure a static IP in your chosen VLAN:  
-      ```powershell
-      New-NetIPAddress -InterfaceAlias "Ethernet" -IPAddress 192.168.40.10 `
-        -PrefixLength 24 -DefaultGateway 192.168.40.1
-      ```
-      
-      ![IPv4 properties](/assets/img/posts/ms-server-2022-proxmox/ms-server-2022-proxmox-img13.png)  
-      *Figure 13: Setting a static IPv4 address.*  
-      
-   3. Install the QEMU Guest Agent:  
-      - From the VirtIO CD, run `qemu-ga-x86_64.msi`.  
-      - Verify in Proxmox **Summary** that the VM’s IP is now detected automatically.  
-      
-      ![Guest Agent summary](/assets/img/posts/ms-server-2022-proxmox/ms-server-2022-proxmox-img14.png)  
-      *Figure 14: QEMU Guest Agent confirmation.*  
+2. **Impact assessment:**  
+   - Identify server roles (DNS, DHCP, AD DS) to revert post-trial.  
+   - Plan data migration off the server before expiration.
 
 ---
 
-## Troubleshooting
+## 1. Assign the Server a Name
 
-1. **Proxmox GUI Access Blocked by Windows Firewall**  
-   - Ensure your PC’s network profile is set to **Private**.  
-   - Create an outbound rule in **Windows Defender Firewall**:  
-     1. Open **Windows Defender Firewall** → **Outbound Rules** → **New Rule**.  
-     2. **Port** → TCP 8006 → **Allow** → apply to all profiles → name: `Proxmox UI Outbound`.  
+1. In **Server Manager**, click <kbd>Local Server</kbd>.  
+2. Enter a descriptive name (e.g., `HOMELAB-DC1`) and click **OK**.  
+3. Restart when prompted.  
 
-2. **VM Fails to Start (QEMU exited with code 1)**  
-   > **Cause:** Incompatible CPU type or missing VirtIO drivers.  
-   {: .prompt-warning}  
-   - Updated to the latest VirtIO drivers.  
-   - Verified **CPU type** is set to **host**.  
-   - Confirmed **SCSI controller** = VirtIO SCSI, **Cache** = Write back, **Balloon** enabled.  
+![Server Name Assignment](/assets/img/posts/ms-ad-config/ms-ad-config-img1.png)  
+*Figure 1: Assigning a descriptive server name.*
+
+![Restart Prompt](/assets/img/posts/ms-ad-config/ms-ad-config-img2.png)  
+*Figure 2: Restart to apply server name change.*
+
+---
+
+## 2. Install AD DS and DNS Roles
+
+1. In **Server Manager**, click <kbd>Manage</kbd> → <kbd>Add Roles and Features</kbd>.  
+2. Choose **Role-based or feature-based installation**, select your server.  
+3. Under **Server Roles**, check:  
+   1. **Active Directory Domain Services** → click **Add Features**.  
+   2. **Active Directory Domain Services** → click **Add Features**.
+4. Proceed through the wizard and click **Install**.  
+5. Close the wizard when complete.  
+
+![Add Roles Wizard](/assets/img/posts/ms-ad-config/ms-ad-config-img3.png)  
+*Figure 3: Selecting AD DS and DNS roles.*
+
+---
+
+## 3. Promote to Domain Controller
+
+1. In **Server Manager**, click the flag icon → **Promote this server to a domain controller**.  
+2. Select **Add a new forest**, enter root domain `homelab.lan`.  
+3. Set a strong DSRM password and ignore any DNS delegation warning.  
+
+> **Warning:** In production, configure DNS delegation; for home lab it’s safe to proceed.  
+{: .prompt-warning}
+
+![AD DS Wizard – Deployment Configuration](/assets/img/posts/ms-ad-config/ms-ad-config-img4.png)  
+*Figure 4: Deployment options in AD DS Configuration Wizard.*
+
+---
+
+## 4. Configure DNS Forwarding (DNS Proxy)
+
+You can either set your server as primary DNS or forward queries:
+
+- **Server DNS:** Clients point to `192.168.30.190`; risk of downtime if server offline.  
+- **Router DNS forwarding:** In your router GUI under VLAN DNS settings, forward to server (`192.168.30.190`) and fallback to Quad9 (`9.9.9.9`).  
+
+![Router DNS Forwarding](/assets/img/posts/ms-ad-config/ms-ad-config-img5.png)  
+*Figure 5: Configuring DNS forwarding in TP-Link GUI.*
+
+---
+
+## 5. Verify DNS Settings on Server
+
+1. Open **DNS Manager** → **Forward Lookup Zones** → confirm `homelab.lan`.  
+2. Create a **Reverse Lookup Zone** for `192.168.30.x`.  
+3. Add forwarders (`9.9.9.9`, `1.1.1.1`).  
+4. On a client, run:
+   ```bash
+   nslookup homelab.lan
+   ipconfig /registerdns
+   ipconfig /flushdns
+
+## 6. Plan & Create Organizational Units (OUs)
+
+1. In **Active Directory Users and Computers** (ADUC), right-click the domain (`homelab.lan`) → **New** → **Organizational Unit**.  
+2. Create a top-level OU named **Departments**.  
+3. Under **Departments**, create sub-OUs for each department (Operations, Accounting, Marketing, Tech Support).
+
+![Creating Departments OU](/assets/img/posts/ms-ad-config/ms-ad-config-img11.png)  
+*Figure 11: Creating the top-level “Departments” OU.*
+
+![Creating Sub-OUs](/assets/img/posts/ms-ad-config/ms-ad-config-img12.png)  
+*Figure 12: Adding sub-OUs under “Departments.”*
+
+---
+
+## 7. Create User Accounts
+
+1. In ADUC, navigate to each department OU → **New** → **User**.  
+2. Enter user details (username, password), configure account options, then click **Next** → **Finish**.  
+3. Repeat for all users, ensuring they’re placed in the correct OU.
+
+![New User Wizard](/assets/img/posts/ms-ad-config/ms-ad-config-img13.png)  
+*Figure 13: Filling out the New User Wizard.*
+
+![User List in OU](/assets/img/posts/ms-ad-config/ms-ad-config-img14.png)  
+*Figure 14: User accounts visible in their department OU.*
+
+---
+
+## 8. Join Clients to the Domain
+
+1. On a Windows 11 client: **Settings** → **Accounts** → **Access work or school** → **Connect**.  
+2. Click **Join this device to a local Active Directory domain**, enter `homelab.lan`, then provide domain credentials.  
+3. Restart the client to apply group membership.
+
+> **Tip:** Verify the client’s DNS points to `192.168.30.190` before joining to avoid name-resolution failures.  
+{: .prompt-tip}
+
+---
+
+## 9. Design & Apply Group Policies
+
+1. Open **Group Policy Management** (GPMC).  
+2. Right-click `homelab.lan` → **Create a GPO in this domain** → Name it **Domain Computer Security Policies**.  
+3. Link it at the domain root to apply baseline security settings.  
+4. In GPMC, right-click the **Server Admins** OU → **Block Inheritance** to protect critical accounts.
+
+![GPMC – New GPO](/assets/img/posts/ms-ad-config/ms-ad-config-img15.png)  
+*Figure 15: Creating and linking a domain-level GPO.*
+
+![Blocking Inheritance](/assets/img/posts/ms-ad-config/ms-ad-config-img16.png)  
+*Figure 16: Blocking inheritance on the Server Admins OU.*
+
+---
+
+## 10. Test GPO Enforcement
+
+1. On a non-admin client, run:
+    ```powershell
+    gpupdate /force
+    ```
+2. Verify that prohibited settings (e.g., Control Panel access) are blocked.  
+3. On a Dept Admin account, confirm those settings are reversed under their OU’s GPO.
+
+> **Warning:** Always use `Resultant Set of Policy (RSoP)` or `gpresult /h report.html` to diagnose unexpected GPO behavior.  
+{: .prompt-warning}
+
+---
+
+## 11. Configure File & Folder Permissions
+
+1. On a file server share, right-click the folder → **Properties** → **Security** → **Advanced** → **Disable inheritance** → **Convert inherited permissions to explicit**.  
+2. Remove unwanted groups, add **Tech Support Admins** with **Full Control**, and **Marketing Users** with **Read** only.  
+
+![Folder Permissions](/assets/img/posts/ms-ad-config/ms-ad-config-img17.png)  
+*Figure 17: Securing folder permissions via Advanced Security Settings.*
+
+---
+
+## 12. Verify Access Scenarios
+
+1. **Tech Support Admin:** Should have full control—test by creating, modifying, and deleting files.  
+2. **Regular User:** Should only read—attempting write/delete operations should fail with an “Access Denied” message.  
+
+> **Tip:** Use `icacls \\server\share` on a client to quickly audit NTFS permissions.  
+{: .prompt-tip}
+
+---
+
+## 13. Next Steps & Future Work
+
+- **Advanced NTFS scenarios:** Explore nested permissions and auditing.  
+- **GPO inheritance deep dive:** Document use of security filtering and loopback processing.  
+- **Backup & recovery:** Implement System State backups and AD DS snapshots.
 
 ---
 
 ## Conclusion
 
-This exercise deepened my understanding of virtual machine deployment and troubleshooting on Proxmox. Key takeaways:
+Setting up AD DS in my home lab has reinforced my skills in domain services, DNS, OU design, GPO management, and security planning. The hands-on troubleshooting—especially around inheritance and permissions—demonstrates my methodical approach to problem-solving and my ability to document complex processes clearly for both technical peers and hiring managers alike.
 
-- Proper selection of CPU type and drivers is critical.  
-- Windows Defender Firewall can silently block web UI access; always verify firewall rules.  
-- Post-installation guest tools (QEMU Agent, VirtIO installer) complete the integration.
 
-Feel free to reach out on [LinkedIn](https://www.linkedin.com/in/jarrod-fueston/) with any questions or feedback!  
+<!-- You can also embed raw HTML for additional callouts if needed -->
+<blockquote class="bs-callout bs-callout-warning">
+  <h4>Note:</h4>
+  <p>Be sure to test DNS resolution on all VLANs after changing forwarding settings.</p>
+</blockquote>
