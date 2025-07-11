@@ -1,0 +1,218 @@
+---
+---
+
+@use 'main'
+{%- if jekyll.environment=='production' -%}
+  .bundle
+{%- endif -%}
+;
+
+/* append your custom style below */
+
+h1 {
+  padding-bottom: .5em;
+  color: #477226;
+  // color: #988e4e;
+  // color: rgba(171, 135, 42, 0.72);
+}
+
+/* Space b4 and after post images */
+
+img[src*="/assets/img/posts/"] {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Space b4 and after post tables */
+
+.table-wrapper {
+  margin-top: 2.3rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Space b4 and after prompt-tips */
+blockquote
+ {
+  margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+
+/* Styled horizontal rule for section breaks */
+hr.divider {
+  border: none;
+  border-top: 1px solid var(--bs-border-color);
+  opacity: 0.3;
+  margin: 4rem 0;
+}
+
+.note-text {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--text-muted-color);
+  margin-top: 1.6rem;
+}
+
+.resume-button {
+  color: #50a250;
+  border-width: 3px;
+}
+
+.badge-img {
+  height: 80px;
+  object-fit: contain;
+}
+
+.certifications .small {
+  opacity: 0.6;
+}
+
+// Modify theme shimmer effect to only occur once
+.shimmer {
+  overflow: hidden;
+  position: relative;
+  background: var(--img-bg);
+
+  &::before {
+    content: '';
+    position: absolute;
+    background: var(--shimmer-bg);
+    height: 100%;
+    width: 100%;
+    -webkit-animation: shimmer 1.3s 5;
+    animation: shimmer 1.3s 5;
+  }
+}
+
+/* Center the “View Details” button */
+.featured-projects .card-body .btn {
+  display: block;
+  margin: 1rem auto 0;
+}
+
+/* Skills badges: stronger weight */
+.skills .badge {
+  font-weight: 600;
+  color: var(--bs-body-color);
+  background-color: var(--bs-secondary-bg);
+}
+
+/* Dark Mode Overrides */
+@media (prefers-color-scheme: dark) {
+  .featured-projects .card.h-100.shadow-sm {
+    background-color: hsla(0, 0%, 100%, 0.1) !important;
+    border: 1px solid #d1b58193 !important;
+  }
+
+  .featured-projects .card.h-100.shadow-sm .card-title {
+    color: #ececec !important;
+  }
+
+  .featured-projects .card.h-100.shadow-sm .card-text {
+    color: #dbdbdef2 !important;
+  }
+
+  .skills .badge {
+    background-color: hsla(0, 0%, 100%, 0.12) !important;
+    color: #dbdbde !important;
+    border: 1px solid hsla(0, 0%, 100%, 0.2) !important;
+  }
+
+}
+
+/* Light Mode Overrides */
+@media (prefers-color-scheme: light) {
+
+  body {
+    background: #fdfdfd;
+  }
+
+  #sidebar {
+    background: #e8e8e8;
+  }
+
+  #aside {
+    background: #e3e3e3;
+  }
+
+  /* Featured-Projects cards */
+  .featured-projects .card.h-100.shadow-sm {
+    background-color: rgba(0, 0, 0, 0.10) !important;
+    border: 1px solid #d1b58165 !important;
+  }
+
+  .featured-projects .card.h-100.shadow-sm .card-title,
+  .featured-projects .card.h-100.shadow-sm .card-text {
+    color: var(--bs-body-color) !important;
+  }
+
+  /* Skills badges — slightly darker bg + subtle border */
+  .skills .badge {
+    background-color: rgba(0, 0, 0, 0.10) !important;
+    color: var(--bs-body-color) !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+  }
+
+  /* Divider line color on white background */
+  hr.divider {
+    border-top-color: rgba(0, 0, 0, 0.1) !important;
+  }
+}
+
+/* Resume button base tweak: a slightly thinner border so hover feels intentional */
+.resume-button {
+  border-width: 2px !important;
+}
+
+/* Light-mode hover: very subtle green wash + keep green text */
+@media (prefers-color-scheme: light) {
+  .resume-button:hover {
+    background-color: rgba(80, 162, 80, 0.1) !important;
+    /* 10% green */
+    color: #50a250 !important;
+    /* brand green */
+    border-width: 2px !important;
+    /* stays 2px on hover */
+  }
+}
+
+/* Dark-mode hover: invert to a crisp white wash + dark text for contrast */
+@media (prefers-color-scheme: dark) {
+  .resume-button:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    /* 10% white */
+    color: var(--bs-body-color) !important;
+    /* default light text */
+    border-width: 2px !important;
+  }
+}
+
+/* always turn the "View Details" button text white on card hover */
+.featured-projects .card.h-100.shadow-sm:hover a.btn {
+  color: #fff !important;
+  border-color: #fff !important;
+}
+
+/* 1) Force all H2.section-heading to sit 2 rem from whatever follows */
+h2.section-heading {
+  margin-bottom: 2rem !important;
+}
+
+/* 2) Add a little “|”–style divider between the two education columns */
+.education .row {
+  /* just to be safe, make this a flex container */
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.education .row>.col-md-6 {
+  /* ensure same height so the border runs full height */
+  display: flex;
+  flex-direction: column;
+}
+
+/* target the *second* .col-md-6 in that row */
+.education .row>.col-md-6:nth-child(2) {
+  border-left: 1px solid var(--bs-border-color);
+  padding: 0 1rem;
+}

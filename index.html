@@ -1,4 +1,265 @@
 ---
-layout: home
-# Index page
+layout: page
+permalink: "/"
 ---
+<!-- Hero / Intro -->
+<section class="intro text-center mb-5">
+  <h1 class="display-4">Welcome — I'm Glad You're Here!</h1>
+  <p class="lead">
+    Entry-level IT Support Specialist with real-world experience in networking, systems administration, and
+    virtualization. Explore my home-lab network projects, hands-on technical guides, and step-by-step troubleshooting
+    walk-throughs.
+  </p>
+  <p>
+    This site is both my public portfolio and a technical reference — designed to showcase real-world implementations,
+    not just theory. Browse by category or tag to explore projects, or follow complete setups from start to finish.
+  </p>
+  <p class="note-text">
+    Note: Additional projects from my home-lab enterprise network simulation and independent IT studies are actively
+    being published as I continue building out this living technical portfolio site.
+  </p>
+
+  <div class="mt-4">
+    <a href="https://www.linkedin.com/in/jarrod-fueston/" class="btn btn-primary me-2" target="_blank">LinkedIn</a>
+    <a
+      href="{{ '/assets/files/Jarrod-Fueston-Resume.pdf' | relative_url }}"
+      class="btn btn-outline-secondary resume-button"
+      download
+      target="_blank"
+    >
+      Download Resume
+    </a>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- About Me -->
+<section class="about text-center mb-5">
+  <h2 class="section-heading">About Me</h2>
+
+  <p>
+    I’m an IT professional with an AAS in Network & Server Administration, a BA in Communications, and multiple
+    technical certifications including CompTIA A+ and Network+.
+  </p>
+
+  <p>
+    In June 2024, I built a structured home‑lab environment that simulates a real‑world small‑business network. I
+    designed its physical layout and logical topology—implementing VLAN segmentation, multi‑router configurations, and
+    managed‑switch setups—then deployed Windows Server 2022 on a Proxmox bare‑metal hypervisor. I configured Active
+    Directory, DNS, DHCP, and GPOs to manage user access and security across departmental subnets.
+  </p>
+
+  <p>
+    Since then, I’ve been honing my skills through hands‑on experimentation, trying out new configurations, troubleshooting real‑world issues, and gradually expanding the lab’s capabilities as time allows. Throughout the process, I’ve troubleshot real‑world issues like DNS resolution failures, VLAN misconfigurations, and GPO application conflicts—documenting every step in detail to refine my troubleshooting workflow.
+  </p>
+
+  <p>
+    Beyond technical work, I bring leadership and communication skills honed in retail management and freelance
+    web‑development roles. When I’m not working on my home lab, I enjoy hiking and staying active — and I’m always
+    learning. I’m currently expanding my skills in AI‑powered IT workflows including enrollment in HarvardX’s CS50: AI with Python course.
+  </p>
+</section>
+
+<hr class="divider">
+
+<!-- Education -->
+<section class="education mb-5">
+  <h2 class="section-heading text-center">Education</h2>
+  <div class="row">
+    <!-- AAS first -->
+    <div class="col-md-6 mb-4">
+      <h3>North Seattle College</h3>
+      <p class="mb-1"><strong>AAS, Network & System Administration Specialist</strong> (Dec 2022 – Dec 2024)</p>
+      <p class="small mb-0">GPA: 4.0 • President’s List</p>
+    </div>
+    <!-- UW next -->
+    <div class="col-md-6 mb-4">
+      <h3>University of Washington</h3>
+      <p class="mb-1"><strong>BA, Digital Media: Communication Technology & Society</strong></p>
+      <p class="small mb-0">GPA: 3.8 • Phi Theta Kappa Officer • National Dean’s List</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- Certifications -->
+<!-- Certifications -->
+<section class="certifications mb-5">
+  <h2 class="section-heading text-center mb-4">Certifications</h2>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
+    <!-- CompTIA A+ -->
+    <div class="col text-center">
+      <img
+        src="{{ '/assets/img/badges/Aplus-Logo-Certified-CE.png' | relative_url }}"
+        alt="CompTIA A+ Badge"
+        class="img-fluid badge-img mb-2"
+      >
+      <div class="small">
+        CompTIA A+<br>
+        Cred ID: 28B0M7ZSQFRE17SZ
+      </div>
+    </div>
+
+    <!-- CompTIA Network+ -->
+    <div class="col text-center">
+      <img
+        src="{{ '/assets/img/badges/comptia-network-certification-badge.png' | relative_url }}"
+        alt="CompTIA Network+ Badge"
+        class="img-fluid badge-img mb-2"
+      >
+      <div class="small">
+        CompTIA Network+<br>
+        Cred ID: 6VB0JYJQSBQ11HC0
+      </div>
+    </div>
+
+    <!-- CompTIA CIOS -->
+    <div class="col text-center">
+      <img
+        src="{{ '/assets/img/badges/CompTIA_Cert_CIOS.png' | relative_url }}"
+        alt="CompTIA CIOS Badge"
+        class="img-fluid badge-img mb-2"
+      >
+      <div class="small">
+        CompTIA CIOS<br>
+        Cred ID: COMP10464925
+      </div>
+    </div>
+
+    <!-- TestOut PC Pro -->
+    <div class="col text-center">
+      <img
+        src="{{ '/assets/img/badges/TestOut-PC-Pro Certification.png' | relative_url }}"
+        alt="TestOut PC Pro Badge"
+        class="img-fluid badge-img mb-2"
+      >
+      <div class="small">
+        TestOut PC Pro<br>
+        Cred ID: 6-2C6-V3N9PR
+      </div>
+    </div>
+
+    <!-- AWS Academy Cloud Foundations -->
+    <div class="col text-center">
+      <img
+        src="{{ '/assets/img/badges/aws-cloud-foundations.png' | relative_url }}"
+        alt="AWS Academy Cloud Foundations Badge"
+        class="img-fluid badge-img mb-2"
+      >
+      <div class="small">
+        AWS Academy Graduate<br>
+        AWS Academy Cloud Foundations
+      </div>
+    </div>
+
+    <!-- FOA CFOT -->
+    <div class="col text-center">
+      <img
+        src="{{ '/assets/img/badges/Certified-Fiber Optic-Technician CFOT-badge.jpg' | relative_url }}"
+        alt="Fiber Optic Technician Badge"
+        class="img-fluid badge-img mb-2"
+      >
+      <div class="small">
+        Certified Fiber Optic Technician (CFOT)<br>
+        Cred ID: 3380305
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- Key Skills & Tech Stack -->
+<section class="skills mb-5">
+  <h2 class="section-heading text-center mb-4">Key Skills & Tech Stack</h2>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-5 justify-content-center text-center">
+    <div class="col">
+      <span class="badge rounded-pill bg-secondary py-4 px-4"> Networking (TCP/IP, DNS, DHCP) </span>
+    </div>
+    <div class="col">
+      <span class="badge rounded-pill bg-secondary py-4 px-4"> Windows Server 2022 </span>
+    </div>
+    <div class="col">
+      <span class="badge rounded-pill bg-secondary py-4 px-4"> Active Directory &amp; Group Policy </span>
+    </div>
+    <div class="col">
+      <span class="badge rounded-pill bg-secondary py-4 px-4"> VLANs &amp; Subnetting (VLSM) </span>
+    </div>
+    <div class="col">
+      <span class="badge rounded-pill bg-secondary py-4 px-4"> Router & Switch Configuration </span>
+    </div>
+    <div class="col">
+      <span class="badge rounded-pill bg-secondary py-4 px-4"> Virtualization (Proxmox & Hyper-V) </span>
+    </div>
+    <div class="col">
+      <span class="badge rounded-pill bg-secondary py-4 px-4"> Windows Desktop Administration </span>
+    </div>
+    <div class="col">
+      <span class="badge rounded-pill bg-secondary py-4 px-4"> IT Security Fundamentals </span>
+    </div>
+    <div class="col">
+      <span class="badge rounded-pill bg-secondary py-4 px-4"> IT Troubleshooting & User Support </span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- Featured Projects -->
+<section class="featured-projects mb-5">
+  <h2 class="section-heading text-center mb-4">Featured Projects</h2>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">VLAN Architecture</h5>
+          <p class="card-text">
+            Built a multi‑VLAN topology with pfSense and managed switches for segmented, secure networks.
+          </p>
+          <a href="/docs/vlan-configuration/" class="btn btn-sm btn-outline-primary">View Details</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Proxmox Deployment</h5>
+          <p class="card-text">
+            Deployed Proxmox VE with Windows Server 2022 VM, including AD, DNS, and DHCP services.
+          </p>
+          <a href="/docs/proxmox-setup/" class="btn btn-sm btn-outline-primary">View Details</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Troubleshooting Guides</h5>
+          <p class="card-text">
+            Step‑by‑step docs for diagnosing DNS and VLAN issues—complete with screenshots and commands.
+          </p>
+          <a href="/docs/troubleshooting-guides/" class="btn btn-sm btn-outline-primary">View Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- Bottom Contact -->
+<section class="contact text-center mb-5">
+  <h2 class="section-heading">Let’s Connect</h2>
+  <p>Ready to talk tech or more about my lab docs?</p>
+  <a href="https://www.linkedin.com/in/jarrod-fueston/" class="btn btn-primary me-2" target="_blank">LinkedIn</a>
+  <a
+    href="{{ '/assets/files/Jarrod-Fueston-Resume.pdf' | relative_url }}"
+    class="btn btn-outline-secondary resume-button"
+    download
+    target="_blank"
+  >
+    Download Resume
+  </a>
+</section>
