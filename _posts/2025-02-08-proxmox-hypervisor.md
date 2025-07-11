@@ -5,7 +5,7 @@ categories: [Virtualization, Home Lab, Academic-Project]
 tags: [proxmox, hypervisor, debian, linux, server, configuration]
 ---
 
-> **Project Origin:** *This project was undertaken as part of the "Special LAN Projects" elective during my academic program. It was a self-directed endeavor involving the complete lifecycle from hardware selection and preparation to OS installation, network configuration, and comprehensive documentation.*
+> **Context:** This guide covers the installation and initial setup of the Proxmox VE hypervisor, the virtualization platform for the home lab. This step follows the initial network planning and prepares the host machine for the Windows Server virtual machine.
 {: .prompt-info }
 
 ## Introduction
@@ -24,8 +24,8 @@ Given the project timeline, I started the Proxmox installation before all my net
 
 1.  **Hardware Selection & Upgrade:**
     * After researching the requirements for both Proxmox and Microsoft Server, I repurposed an old laptop for the project.
-    * The laptop met the minimum requirements but had a slow HDD. For better performance, I removed the HDD and replaced it with a new **SSD**.
-    * I also upgraded the memory to the maximum supported by the motherboard. `!! XXX find out Memory XXX !!`
+    * The laptop met the minimum requirements but had a slow HDD. For better performance, and to follow suggested hardware requirements, I removed the HDD and replaced it with a new **SSD**.
+    * I also upgraded the memory to the maximum supported by the motherboard. `8GB`.
 2.  **Creating a Bootable Proxmox USB Drive:**
     * First, I downloaded the latest stable Proxmox VE `.iso` file from the official [Proxmox downloads page](https://www.proxmox.com/en/downloads).
     * Since my laptops lack CD drives, I used a tool to write the ISO file to a flash drive. I chose **Rufus**, a utility I have previous experience with.
@@ -37,10 +37,11 @@ Given the project timeline, I started the Proxmox installation before all my net
 > When using the Rufus utility to install Proxmox on a Windows OS, use the **DD Image Mode** option.
 {: .prompt-tip}
   * A pop-up box prompts for the write mode. If using a Windows OS, it is crucial **not** to use the recommended "ISO Image mode", which is checked by default. Instead, I selected **DD Image mode**, as this is required for a successful Proxmox installation from USB.
-        ![Selecting DD Image Mode in Rufus](/assets/img/posts/proxmox-hypervisor/proxmox-hypervisor-img2.png)
-        *Figure 2: Choosing DD Image mode instead of the default ISO mode.*
 
-    * Finally, I clicked through the subsequent warnings about data on the flash drive being destroyed to complete the bootable USB creation process.
+  ![Selecting DD Image Mode in Rufus](/assets/img/posts/proxmox-hypervisor/proxmox-hypervisor-img2.png)
+  *Figure 2: Choosing DD Image mode instead of the default ISO mode.*
+
+  * Finally, I clicked through the subsequent warnings about data on the flash drive being destroyed to complete the bootable USB creation process.
 
 ---
 

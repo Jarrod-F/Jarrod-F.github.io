@@ -5,8 +5,8 @@ categories: [Virtualization, Home Lab, Academic-Project, Windows Server]
 tags: [proxmox, windows-server, server-2022, virtio, vm, configuration]
 ---
 
-> **Project Origin:** *This project was undertaken as part of the "Special LAN Projects" elective during my academic program. It involved the complete lifecycle from hardware selection and preparation to OS installation, network configuration, and comprehensive documentation.*
-{: .prompt-info}
+> **Context:** This guide details the process of creating a Windows Server 2022 virtual machine on the previously configured Proxmox host. It covers VM creation, driver installation, and initial server setup, preparing it for its role as a Domain Controller.
+{: .prompt-info }
 
 ## Introduction
 

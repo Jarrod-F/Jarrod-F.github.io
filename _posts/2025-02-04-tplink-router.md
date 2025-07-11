@@ -7,7 +7,7 @@ tags: [tp-link, router, vlan, omada, managed switch, configuration, tutorial]
 
 ---
 
-> *Project Origin: This project was undertaken as part of the "Special LAN Projects" elective during my academic program. It was a self-directed endeavor involving the complete lifecycle from network design and hardware selection, component upgrades, configuration, troubleshooting, and comprehensive documentation.*
+> **Context:** This guide details the configuration of the core router for the home lab network. It follows the logical and physical design outlined in the [Home Lab Network Planning & Design Guide](/posts/homelab-planning) and is a prerequisite for setting up the managed switch and server components.
 {: .prompt-info }
 
 ## Introduction
@@ -131,18 +131,3 @@ This project provided several practical learning experiences beyond standard con
 * **Verify Auto-Generated Settings:** I learned not to implicitly trust automatically generated configurations. The "Switch Profiles" created by the Omada Controller were incompatible with my network design and required manual deletion and recreation. This emphasizes the importance of verifying every setting, even those created by the system.
 * **Methodical Testing is Essential:** The process of testing each VLAN individually after configuration changes was crucial for isolating the problem to a single VLAN, which greatly narrowed the scope of troubleshooting.
 
-<!--
-## Next Steps and Future Implementations
-
-The TP-Link router offers numerous features to enhance network security and performance. Based on the initial setup, my planned next steps involve implementing and testing the following:
-
-* **Access Control List (ACL):** Configure ACLs for more granular control over which devices or subnets can access specific network resources, adding a layer of security beyond basic VLAN segregation.
-* **URL Filtering:** Implement URL filtering to block access to specific websites, potentially improving security and productivity within the lab environment.
-* **MAC Filtering:** Configure MAC filtering to allow only devices with explicitly permitted MAC addresses to connect to the network (or specific VLANs), adding another barrier against unauthorized access.
-
-Additionally, after strengthening the security posture, I plan to explore and test specific features within the VLAN settings further:
-
-* **IGMP Snooping:** Enable and configure IGMP Snooping to optimize multicast traffic management. This can improve network efficiency, especially if using applications that rely on multicast, by preventing multicast data from flooding ports unnecessarily.
-
-Finally, I will continue exploring other advanced features related to network security, transmission optimization, and potentially VPN configurations to further refine the home lab network's performance, security, and capabilities.
--->
