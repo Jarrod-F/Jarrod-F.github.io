@@ -1,12 +1,11 @@
 ---
 ---
 
-@use 'main'
-{%- if jekyll.environment=='production' -%}
-, 'main.bundle'
-{%- endif -%};
+@use 'main';
+{%- if jekyll.environment == 'production' -%}
+  @use 'main.bundle';
+{%- endif -%}
 
-// <-- Comma inside the Liquid block, semicolon immediately after endif
 /* append your custom style below */
 
 h1 {
