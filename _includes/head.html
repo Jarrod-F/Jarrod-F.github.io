@@ -121,4 +121,40 @@
   {% endif %}
 
   {% include metadata-hook.html %}
+
+  <style>
+    .row.g-5, .row.gx-5 {
+      --bs-gutter-x: 3rem !important;
+      margin-right: calc(var(--bs-gutter-x) * -.5) !important;
+      margin-left: calc(var(--bs-gutter-x) * -.5) !important;
+    }
+    .row.gy-5 {
+      --bs-gutter-y: 3rem !important;
+      margin-top: calc(var(--bs-gutter-y) * -.5) !important;
+    }
+    .col.g-5, .col.gx-5 {
+      padding-right: calc(var(--bs-gutter-x) * .5) !important;
+      padding-left: calc(var(--bs-gutter-x) * .5) !important;
+    }
+    .col.gy-5 {
+      padding-top: calc(var(--bs-gutter-y) * .5) !important;
+    }
+
+    .row.g-4, .row.gx-4 {
+      --bs-gutter-x: 1.5rem !important;
+      margin-right: calc(var(--bs-gutter-x) * -.5) !important;
+      margin-left: calc(var(--bs-gutter-x) * -.5) !important;
+    }
+    .row.gy-4 {
+      --bs-gutter-y: 1.5rem !important;
+      margin-top: calc(var(--bs-gutter-y) * -.5) !important;
+    }
+    .col.g-4, .col.gx-4 {
+      padding-right: calc(var(--bs-gutter-x) * .5) !important;
+      padding-left: calc(var(--bs-gutter-x) * .5) !important;
+    }
+    .col.gy-4 {
+      padding-top: calc(var(--bs-gutter-y) * .5) !important;
+    }
+  </style>
 </head>
