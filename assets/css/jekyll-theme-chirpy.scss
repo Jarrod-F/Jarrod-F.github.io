@@ -217,10 +217,14 @@ h2.section-heading {
   padding: 0 1rem;
 }
 
-// Override for Bootstrap Gutter Utilities
-// This targets the specific Bootstrap classes and forces the correct gap
+// =====================================
+// Custom Bootstrap Gutter Overrides
+// To ensure gutter classes work correctly
+// on GitHub Pages, overriding Chirpy's
+// internal Bootstrap's `gap: 0 !important;`
+// =====================================
 
-// Gutter Size 5 (g-5) - gap: 3rem
+// Gutter Size 5 (g-5, gx-5, gy-5) - Base gap: 3rem
 .row.g-5,
 .row.gx-5 {
   --bs-gutter-x: 3rem !important;
@@ -243,7 +247,8 @@ h2.section-heading {
   padding-top: calc(var(--bs-gutter-y) * .5) !important;
 }
 
-// Gutter Size 4 (g-4) - gap: 1.5rem (common for Certifications section)
+
+// Gutter Size 4 (g-4, gx-4, gy-4) - Base gap: 1.5rem
 .row.g-4,
 .row.gx-4 {
   --bs-gutter-x: 1.5rem !important;
@@ -266,25 +271,11 @@ h2.section-heading {
   padding-top: calc(var(--bs-gutter-y) * .5) !important;
 }
 
-// Add more if you use other gutter sizes (e.g., g-3, g-2, g-1, g-0)
-// Example for g-3 (gap: 1rem) if needed:
-/*
-.row.g-3,
-.row.gx-3 {
-  --bs-gutter-x: 1rem !important;
-  margin-right: calc(var(--bs-gutter-x) * -.5) !important;
-  margin-left: calc(var(--bs-gutter-x) * -.5) !important;
-}
-.row.gy-3 {
-  --bs-gutter-y: 1rem !important;
-  margin-top: calc(var(--bs-gutter-y) * -.5) !important;
-}
-.col.g-3,
-.col.gx-3 {
-  padding-right: calc(var(--bs-gutter-x) * .5) !important;
-  padding-left: calc(var(--bs-gutter-x) * .5) !important;
-}
-.col.gy-3 {
-  padding-top: calc(var(--bs-gutter-y) * .5) !important;
-}
-*/
+// Add similar blocks for other gutter sizes (g-3, g-2, g-1, g-0) if needed.
+// The Bootstrap gutter sizes are:
+// g-0: 0
+// g-1: 0.25rem
+// g-2: 0.5rem
+// g-3: 1rem (default)
+// g-4: 1.5rem
+// g-5: 3rem
