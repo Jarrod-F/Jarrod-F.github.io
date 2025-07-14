@@ -31,10 +31,9 @@ img[src*="/assets/img/posts/"] {
 }
 
 /* Space b4 and after prompt-tips */
-blockquote
- {
+blockquote {
   margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 
@@ -215,4 +214,90 @@ h2.section-heading {
 .education .row>.col-md-6:nth-child(2) {
   border-left: 1px solid var(--bs-border-color);
   padding: 0 1rem;
+}
+
+/* --- CUSTOM GRID/FLEXBOX STYLES TO OVERRIDE BOOTSTRAP START HERE --- */
+
+/* Custom Grid/Flexbox for Certifications */
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Allows more items on very small screens */
+  gap: 1.5rem; /* Gap for small screens */
+  justify-items: center; /* Center items within their grid cells */
+  align-items: start; /* Align items to the top if they have different heights */
+
+  @media (min-width: 576px) { /* Small devices (sm) - aim for 2 columns */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  @media (min-width: 768px) { /* Medium devices (md) - aim for 3 columns */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  @media (min-width: 992px) { /* Large devices (lg) - aim for 3 columns */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+  @media (min-width: 1200px) { /* Extra large (xl) - still 3 columns */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+}
+
+/* Custom Grid/Flexbox for Skills & Tech Stack */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  /* Allows more flexibility on small screens */
+  gap: 1.5rem;
+
+  @media (min-width: 576px) {
+    /* Small devices (sm) */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    /* Medium devices (md) - aim for 2 columns if that looks better */
+    grid-template-columns: repeat(2, 1fr); // Try 2 explicitly here, then 3 for larger
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 1110px) {
+    /* Large devices (lg) - aim for 3 columns */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+
+  @media (min-width: 1200px) and (max-width: 1374.98px) {
+    grid-template-columns: repeat(2, 1fr); // Force 2 columns in this specific range
+    gap: 3rem; // Adjust gap as needed for visual spacing with 2 columns
+  }
+
+  @media (min-width: 1375px) {
+    /* Custom large breakpoint - go back to 3 columns if room, or auto-fit */
+    grid-template-columns: repeat(3, 1fr); // Continue with 3 columns above 1375px
+    gap: 3.5rem; // Adjust gap as needed
+  }
+}
+
+/* Custom Grid/Flexbox for Featured Projects */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Minimum card width */
+  gap: 2rem; /* Initial gap */
+  align-items: stretch;
+
+  @media (min-width: 768px) { /* Medium devices (md) - aim for 3 columns */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+  @media (min-width: 992px) { /* Large devices (lg) - keep 3 columns */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+  @media (min-width: 1200px) { /* Extra large (xl) - keep 3 columns */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3.5rem;
+  }
 }
