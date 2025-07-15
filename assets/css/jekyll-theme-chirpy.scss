@@ -87,6 +87,7 @@ hr.divider {
 .featured-projects .card-body .btn {
   display: block;
   margin: 1rem auto 0;
+  border-bottom: 1px solid #0d6efd;
 }
 
 /* Skills badges: stronger weight */
@@ -116,14 +117,27 @@ hr.divider {
     color: #dbdbde !important;
     border: 1px solid hsla(0, 0%, 100%, 0.2) !important;
   }
-
 }
 
-/* Light Mode Overrides */
-@media (prefers-color-scheme: light) {
+/* Dark-mode hover: invert to a crisp white wash + dark text for contrast */
+@media (prefers-color-scheme: dark) {
+  .resume-button:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    /* 10% white */
+    color: var(--bs-body-color) !important;
+    /* default light text */
+    border-width: 2px !important;
+  }
+}
 
+/* Custom Light Mode Overrides based on Chirpy's data-mode attribute */
+
+// First, ensure your general light mode properties are applied to the body.
+// We'll use the data-mode attribute for this, which the theme toggle controls.
+html[data-mode="light"] {
   body {
     background: #fdfdfd;
+    color: #2a2a2a; // General text color for the body in light mode
   }
 
   #sidebar {
@@ -137,34 +151,92 @@ hr.divider {
   /* Featured-Projects cards */
   .featured-projects .card.h-100.shadow-sm {
     background-color: rgba(0, 0, 0, 0.10) !important;
-    border: 1px solid #d1b58165 !important;
+    border: 2px solid #d1b58165 !important;
   }
 
-  .featured-projects .card.h-100.shadow-sm .card-title,
-  .featured-projects .card.h-100.shadow-sm .card-text {
-    color: var(--bs-body-color) !important;
+  /* Explicitly override card title color in light mode - Matching full specificity */
+  .featured-projects .card.h-100.shadow-sm .card-title {
+    color: #2a2a2a !important;
+    /* Your desired color for card titles */
   }
+
+  /* Explicitly override card text color in light mode - Matching full specificity */
+  .featured-projects .card.h-100.shadow-sm .card-text {
+    color: #717171 !important;
+  }
+
+  /* Override white border bottm of button */
+  .post-tail-wrapper .post-meta a:not(:hover),
+  .content a:not(.img-link) {}
+    border-bottom: 1px solid #2a2a2a;
 
   /* Skills badges — slightly darker bg + subtle border */
   .skills .badge {
     background-color: rgba(0, 0, 0, 0.10) !important;
-    color: var(--bs-body-color) !important;
     border: 1px solid rgba(0, 0, 0, 0.15) !important;
+    color: #4e4e51 !important;
+    // The theme might set color here, so we'll target the children for control.
+    // color: var(--bs-body-color) !important; // Comment this out if it's conflicting
+  }
+
+  /* Explicitly set color for text inside skill badges */
+  /* Target the span or any other direct child of the badge if needed */
+  .skills .badge>* {
+    /* This targets the direct content element within the badge */
+    color: #2a2a2a !important;
+    /* Your desired color for skill badge text */
+  }
+
+  /* If there are any other specific H5s outside of cards/badges you want to control */
+  h5 {
+    color: #717171; // This might still be overridden by more specific rules from Bootstrap/Chirpy
   }
 
   /* Divider line color on white background */
   hr.divider {
     border-top-color: rgba(0, 0, 0, 0.1) !important;
   }
+/* Button Bottom Visibility Fix */
+  // a.btn {
+  //   text-decoration: none !important;
+  //   border-bottom: none !important;
+  // }
+  // .btn {
+  //   border-bottom: var(--bs-btn-border-width) solid var(--bs-btn-border-color) !important;
+  // }
+
 }
 
 /* Resume button base tweak: a slightly thinner border so hover feels intentional */
 .resume-button {
   border-width: 2px !important;
+  border-bottom: 1px solid #50a250 !important;
 }
 
+
+// Ensure the dark mode rules for specific components don't bleed through
+// if you want the light colors even when the system prefers dark mode,
+// but the site is forced to light via the toggle.
+// This is less about overriding prefers-color-scheme: dark and more about
+// ensuring [data-mode="light"] takes precedence.
+
+// If you ever want to specifically override dark mode colors for these elements
+// when Chirpy's toggle is set to DARK, you would use:
+/*
+html[data-mode="dark"] {
+  .featured-projects .card.h-100.shadow-sm .card-title {
+    color: YOUR_DARK_MODE_TITLE_COLOR !important;
+  }
+  .featured-projects .card.h-100.shadow-sm .card-text {
+    color: YOUR_DARK_MODE_TEXT_COLOR !important;
+  }
+  .skills .badge > * {
+    color: YOUR_DARK_MODE_SKILL_TEXT_COLOR !important;
+  }
+}
+*/
+
 /* Light-mode hover: very subtle green wash + keep green text */
-@media (prefers-color-scheme: light) {
   .resume-button:hover {
     background-color: rgba(80, 162, 80, 0.1) !important;
     /* 10% green */
@@ -173,18 +245,6 @@ hr.divider {
     border-width: 2px !important;
     /* stays 2px on hover */
   }
-}
-
-/* Dark-mode hover: invert to a crisp white wash + dark text for contrast */
-@media (prefers-color-scheme: dark) {
-  .resume-button:hover {
-    background-color: rgba(255, 255, 255, 0.1) !important;
-    /* 10% white */
-    color: var(--bs-body-color) !important;
-    /* default light text */
-    border-width: 2px !important;
-  }
-}
 
 /* always turn the "View Details" button text white on card hover */
 .featured-projects .card.h-100.shadow-sm:hover a.btn {
