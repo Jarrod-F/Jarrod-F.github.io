@@ -10,7 +10,7 @@ tags: [activedirectory, ad-ds, dns, gpo, ou, domain-controller, server-2022, con
 
 ## Introduction
 
-After installing Microsoft Server 2022 and configuring its network settings, I proceeded to set up Active Directory (AD) to manage user accounts, groups, and resources. This involved:
+After installing [ Microsoft Server 2022](/posts/ms-ad-config) and configuring its network settings, I proceeded to set up Active Directory (AD) to manage user accounts, groups, and resources. This involved:
 
 - Installing and configuring AD DS and DNS.
 - Creating Organizational Units (OUs) and user accounts.

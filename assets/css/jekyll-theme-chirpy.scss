@@ -119,25 +119,138 @@ hr.divider {
   }
 }
 
-/* Dark-mode hover: invert to a crisp white wash + dark text for contrast */
+/* --- THEME VARIABLE DEFINITIONS AND COMPONENT OVERRIDES START HERE --- */
+
+/* Base Variables for System Default DARK Mode */
+/* These apply when user's OS is set to dark, BEFORE any toggle override */
 @media (prefers-color-scheme: dark) {
+  html {
+    --main-bg: #2a2a2a;
+    --text-color: #fdfdfd;
+    --heading-color: #fdfdfd;
+    --card-title-color: #fdfdfd;
+    --bs-body-color: #fdfdfd;
+    --bs-secondary-bg: hsla(0, 0%, 100%, 0.12);
+    /* Chirpy's default or common dark secondary bg */
+    --bs-border-color: hsla(0, 0%, 100%, 0.2);
+    --link-underline-color: transparent;
+
+    --bs-btn-border-width: 1px;
+    --bs-btn-border-color: rgba(255, 255, 255, 0.7);
+    /* Your desired lighter white border for buttons */
+    --bs-btn-color: var(--text-color);
+    --bs-btn-bg: transparent;
+  }
+
+  /* Specific Dark Mode Overrides for Components (Your original working values) */
+  /* These ensure your custom dark tints are applied, overriding generic --bs-secondary-bg */
+  .featured-projects .card.h-100.shadow-sm {
+    background-color: hsla(0, 0%, 100%, 0.1) !important;
+    /* Your specific dark card bg */
+    border: 1px solid #d1b58193 !important;
+    /* Your specific dark card border */
+  }
+
+  .featured-projects .card.h-100.shadow-sm .card-title {
+    color: #ececec !important;
+    /* Your specific dark card title color */
+  }
+
+  .featured-projects .card.h-100.shadow-sm .card-text {
+    color: #dbdbdef2 !important;
+    /* Your specific dark card text color */
+  }
+
+  .skills .badge {
+    background-color: hsla(0, 0%, 100%, 0.12) !important;
+    /* Your specific dark badge bg */
+    border: 1px solid hsla(0, 0%, 100%, 0.2) !important;
+    /* Your specific dark badge border */
+    color: #dbdbde !important;
+    /* Your specific dark badge text color */
+  }
+
+  /* Dark-mode hover for resume button */
   .resume-button:hover {
     background-color: rgba(255, 255, 255, 0.1) !important;
-    /* 10% white */
     color: var(--bs-body-color) !important;
-    /* default light text */
-    border-width: 2px !important;
   }
 }
 
-/* Custom Light Mode Overrides based on Chirpy's data-mode attribute */
+/* Base Variables for System Default LIGHT Mode */
+/* These apply when user's OS is set to light, BEFORE any toggle override */
+@media (prefers-color-scheme: light) {
+  html {
+    --main-bg: #fdfdfd;
+    --text-color: #2a2a2a;
+    --heading-color: #717171;
+    --card-title-color: #717171;
+    --bs-body-color: #2a2a2a;
+    --bs-secondary-bg: rgba(0, 0, 0, 0.10);
+    /* Your desired light secondary bg */
+    --bs-border-color: rgba(0, 0, 0, 0.1);
+    --link-color: #007bff;
+    --link-underline-color: transparent;
 
-// First, ensure your general light mode properties are applied to the body.
-// We'll use the data-mode attribute for this, which the theme toggle controls.
+    --bs-btn-border-width: 1px;
+    --bs-btn-border-color: rgba(0, 0, 0, 0.2);
+    /* Subtle dark border for buttons */
+    --bs-btn-color: var(--text-color);
+    --bs-btn-bg: transparent;
+  }
+
+  /* Featured-Projects cards specific styling for Light Mode */
+  .featured-projects .card.h-100.shadow-sm {
+    background-color: var(--bs-secondary-bg) !important;
+    border: 2px solid #d1b58165 !important;
+  }
+
+  .featured-projects .card.h-100.shadow-sm .card-title {
+    color: var(--card-title-color) !important;
+  }
+
+  .featured-projects .card.h-100.shadow-sm .card-text {
+    color: var(--bs-body-color) !important;
+  }
+
+  /* Skills badges specific styling for Light Mode */
+  .skills .badge {
+    background-color: var(--bs-secondary-bg) !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+    color: var(--text-color) !important;
+    /* Ensures badge text is dark in light mode */
+  }
+
+  /* Light-mode hover for resume button */
+  .resume-button:hover {
+    background-color: rgba(80, 162, 80, 0.1) !important;
+    color: #50a250 !important;
+  }
+}
+
+/* --- Theme Toggle Overrides (These apply when data-mode is explicitly set by the user toggle) --- */
+/* These rules will override the system defaults defined above */
+
+/* When the user toggles to LIGHT mode */
 html[data-mode="light"] {
+  --main-bg: #fdfdfd;
+  --text-color: #2a2a2a;
+  --heading-color: #717171;
+  --card-title-color: #717171;
+  --bs-body-color: #2a2a2a;
+  --bs-secondary-bg: rgba(0, 0, 0, 0.10);
+  --bs-border-color: rgba(0, 0, 0, 0.1);
+  --link-color: #007bff;
+  --link-underline-color: transparent;
+
+  --bs-btn-border-width: 1px;
+  --bs-btn-border-color: rgba(0, 0, 0, 0.2);
+  --bs-btn-color: var(--text-color);
+  --bs-btn-bg: transparent;
+
   body {
-    background: #fdfdfd;
-    color: #2a2a2a; // General text color for the body in light mode
+    background: var(--main-bg);
+    color: var(--text-color);
   }
 
   #sidebar {
@@ -148,103 +261,106 @@ html[data-mode="light"] {
     background: #e3e3e3;
   }
 
-  /* Featured-Projects cards */
+  /* Ensure components pick up these variables */
   .featured-projects .card.h-100.shadow-sm {
-    background-color: rgba(0, 0, 0, 0.10) !important;
+    background-color: var(--bs-secondary-bg) !important;
     border: 2px solid #d1b58165 !important;
   }
 
-  /* Explicitly override card title color in light mode - Matching full specificity */
   .featured-projects .card.h-100.shadow-sm .card-title {
-    color: #2a2a2a !important;
-    /* Your desired color for card titles */
+    color: var(--card-title-color) !important;
   }
 
-  /* Explicitly override card text color in light mode - Matching full specificity */
   .featured-projects .card.h-100.shadow-sm .card-text {
-    color: #717171 !important;
+    color: var(--bs-body-color) !important;
   }
 
-  /* Override white border bottm of button */
-  .post-tail-wrapper .post-meta a:not(:hover),
-  .content a:not(.img-link) {}
-    border-bottom: 1px solid #2a2a2a;
-
-  /* Skills badges — slightly darker bg + subtle border */
   .skills .badge {
-    background-color: rgba(0, 0, 0, 0.10) !important;
-    border: 1px solid rgba(0, 0, 0, 0.15) !important;
-    color: #4e4e51 !important;
-    // The theme might set color here, so we'll target the children for control.
-    // color: var(--bs-body-color) !important; // Comment this out if it's conflicting
+    background-color: var(--bs-secondary-bg) !important;
+    border: 1px solid rgba(0, 0, 0, 0.2) !important;
+    color: var(--text-color) !important;
   }
-
-  /* Explicitly set color for text inside skill badges */
-  /* Target the span or any other direct child of the badge if needed */
-  .skills .badge>* {
-    /* This targets the direct content element within the badge */
-    color: #2a2a2a !important;
-    /* Your desired color for skill badge text */
-  }
-
-  /* If there are any other specific H5s outside of cards/badges you want to control */
-  h5 {
-    color: #717171; // This might still be overridden by more specific rules from Bootstrap/Chirpy
-  }
-
-  /* Divider line color on white background */
-  hr.divider {
-    border-top-color: rgba(0, 0, 0, 0.1) !important;
-  }
-/* Button Bottom Visibility Fix */
-  // a.btn {
-  //   text-decoration: none !important;
-  //   border-bottom: none !important;
-  // }
-  // .btn {
-  //   border-bottom: var(--bs-btn-border-width) solid var(--bs-btn-border-color) !important;
-  // }
-
 }
 
-/* Resume button base tweak: a slightly thinner border so hover feels intentional */
-.resume-button {
-  border-width: 2px !important;
-  border-bottom: 1px solid #50a250 !important;
-}
-
-
-// Ensure the dark mode rules for specific components don't bleed through
-// if you want the light colors even when the system prefers dark mode,
-// but the site is forced to light via the toggle.
-// This is less about overriding prefers-color-scheme: dark and more about
-// ensuring [data-mode="light"] takes precedence.
-
-// If you ever want to specifically override dark mode colors for these elements
-// when Chirpy's toggle is set to DARK, you would use:
-/*
+/* When the user toggles to DARK mode */
 html[data-mode="dark"] {
+  --main-bg: #2a2a2a;
+  --text-color: #fdfdfd;
+  --heading-color: #fdfdfd;
+  --card-title-color: #fdfdfd;
+  --bs-body-color: #fdfdfd;
+  --bs-secondary-bg: hsla(0, 0%, 100%, 0.12);
+  --bs-border-color: hsla(0, 0%, 100%, 0.2);
+  --link-underline-color: transparent;
+
+  --bs-btn-border-width: 1px;
+  --bs-btn-border-color: rgba(255, 255, 255, 0.7);
+  --bs-btn-color: var(--text-color);
+  --bs-btn-bg: transparent;
+
+  /* Ensure components pick up these variables, or retain their specific overrides */
+  .featured-projects .card.h-100.shadow-sm {
+    background-color: hsla(0, 0%, 100%, 0.1) !important;
+    border: 1px solid #d1b58193 !important;
+  }
+
   .featured-projects .card.h-100.shadow-sm .card-title {
-    color: YOUR_DARK_MODE_TITLE_COLOR !important;
+    color: #ececec !important;
   }
+
   .featured-projects .card.h-100.shadow-sm .card-text {
-    color: YOUR_DARK_MODE_TEXT_COLOR !important;
+    color: #dbdbdef2 !important;
   }
-  .skills .badge > * {
-    color: YOUR_DARK_MODE_SKILL_TEXT_COLOR !important;
+
+  .skills .badge {
+    background-color: hsla(0, 0%, 100%, 0.12) !important;
+    border: 1px solid hsla(0, 0%, 100%, 0.2) !important;
+    color: #dbdbde !important;
   }
 }
-*/
 
-/* Light-mode hover: very subtle green wash + keep green text */
-  .resume-button:hover {
-    background-color: rgba(80, 162, 80, 0.1) !important;
-    /* 10% green */
-    color: #50a250 !important;
-    /* brand green */
-    border-width: 2px !important;
-    /* stays 2px on hover */
-  }
+/* --- General Component Styling (Applies to both modes unless overridden by specific rules) --- */
+/* These rules use the variables defined above or apply universally */
+
+/* General h5 rule */
+h5 {
+  color: var(--heading-color);
+}
+
+/* Divider line color */
+hr.divider {
+  border-top-color: var(--bs-border-color) !important;
+}
+
+/* General button styling (will pick up border/color from mode variables) */
+.btn {
+  border: var(--bs-btn-border-width) solid var(--bs-btn-border-color) !important;
+  text-decoration: none !important;
+  /* Ensure no default link underline */
+  // If you need more specific control for button text color, uncomment:
+  // color: var(--bs-btn-color) !important;
+}
+
+/* Remove default link underline on any anchor that is also a button */
+a.btn {
+  text-decoration: none !important;
+}
+
+// Your existing general resume button styling
+.resume-button {
+  color: #50a250;
+  border-width: 3px;
+  /* This will be overridden by the .btn rule unless you add !important here */
+}
+
+/* Add border and spacing to card titles */
+.featured-projects .card.h-100.shadow-sm .card-title {
+  border-bottom: 1px solid var(--bs-border-color);
+  /* Uses the theme's border color */
+  padding-bottom: .6rem;
+  margin-bottom: .6rem;
+  /* Adds space after the border as well */
+}
 
 /* always turn the "View Details" button text white on card hover */
 .featured-projects .card.h-100.shadow-sm:hover a.btn {
@@ -252,28 +368,10 @@ html[data-mode="dark"] {
   border-color: #fff !important;
 }
 
-/* 1) Force all H2.section-heading to sit 2 rem from whatever follows */
-h2.section-heading {
-  margin-bottom: 2rem !important;
-}
-
-/* 2) Add a little “|”–style divider between the two education columns */
-.education .row {
-  /* just to be safe, make this a flex container */
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.education .row>.col-md-6 {
-  /* ensure same height so the border runs full height */
-  display: flex;
-  flex-direction: column;
-}
-
-/* target the *second* .col-md-6 in that row */
-.education .row>.col-md-6:nth-child(2) {
-  border-left: 1px solid var(--bs-border-color);
-  padding: 0 1rem;
+/* always turn the "View Details" button text white on card hover */
+.featured-projects .card.h-100.shadow-sm:hover a.btn {
+  color: #fff !important;
+  border-color: #fff !important;
 }
 
 /* --- CUSTOM GRID/FLEXBOX STYLES TO OVERRIDE BOOTSTRAP START HERE --- */

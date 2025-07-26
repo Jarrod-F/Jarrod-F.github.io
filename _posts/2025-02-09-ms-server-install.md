@@ -10,7 +10,7 @@ tags: [proxmox, windows-server, server-2022, virtio, vm, configuration]
 
 ## Introduction
 
-After successfully installing the Proxmox hypervisor and configuring its network settings, I proceeded to install **Microsoft Server 2022** as a virtual machine (VM).
+After successfully installing the [Proxmox hypervisor](/posts/proxmox-hypervisor) and configuring its network settings, I proceeded to install **Microsoft Server 2022** as a virtual machine (VM).
 
 During this process, I encountered a separate troubleshooting challenge: while the Proxmox web GUI was accessible from other devices on my network, it was unreachable from my main PC. After initial network diagnostics (`ping`, `tracert`..) and browser testing, I isolated the cause to my PC's local firewall. The solution involved creating a new outbound rule in Windows Defender Firewall for the Proxmox port (8006) and refreshing the network adapter. Detailed troubleshooting steps are in the **Troubleshooting** section.
 
