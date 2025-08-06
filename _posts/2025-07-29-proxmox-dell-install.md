@@ -1,6 +1,6 @@
 ---
 title: Installing Proxmox VE and Initial Network Configuration on the Dell Precision 7710
-date: 2025-08-10
+date: 2025-08-03
 author: Jarrod
 categories: [Virtualization, Networking, Home-Lab]
 tags: [proxmox, dell-precision, installation, network-setup, topology]
