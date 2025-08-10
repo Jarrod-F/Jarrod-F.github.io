@@ -1,7 +1,7 @@
 ---
 title: Backing Up an Active Directory VM for Migration
 date: 2025-07-24
-categories: [Virtualization, Windows-Server, Home-Lab, Data-Protection]
+categories: [Home Lab Migration Series, Virtualization, Windows-Server, Home-Lab, Data-Protection]
 tags: [proxmox, backup, vzdump, active-directory, migration, dcdiag, itsm]
 ---
 
