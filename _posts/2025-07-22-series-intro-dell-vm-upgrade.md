@@ -37,16 +37,7 @@ The current environment, while functional for basic Active Directory operations,
 
 ## The Strategic Solution: Dell Precision 7710 Migration
 
-### Hardware Specifications Comparison
-
-| Component | Current Proxmox Host | Dell Precision 7710 | Improvement Factor |
-|-----------|---------------------|---------------------|-------------------|
-| **CPU** | Intel i3-2350M @ 2.30GHz | Intel i7-6920HQ @ 2.60GHz | 4 cores vs 2 cores |
-| **Architecture** | 2 cores, 4 threads | 4 cores, 8 threads | **2x cores, 2x threads** |
-| **CPU Generation** | 2nd Gen (Sandy Bridge, 2011) | 6th Gen (Skylake, 2015) | **4 generations newer** |
-| **Total RAM** | 7.7GB DDR3 | 32GB DDR4 | **4.2x memory capacity** |
-| **Memory Type** | DDR3-1333 | DDR4-2133/2400 | **~80% faster memory** |
-| **Storage** | Traditional HDD/SSD | Upgraded to 1TB NVMe SSD | **3-5x faster I/O** |
+Add an aditional HDD/SSD | Upgraded to 1TB NVMe SSD | **3-5x faster I/O** |
 | **VM Capacity** | Single VM at 49% utilization | Multiple concurrent VMs | **5+ VMs simultaneously** |
 
 ### Current Resource Allocation vs. Available Capacity
@@ -59,11 +50,20 @@ The current environment, while functional for basic Active Directory operations,
 **Dell Precision 7710 Projected Capacity:**
 - **Same VM Resource Usage:** <15% of total capacity
 - **Available for Expansion:** ~27GB RAM, 6 additional vCPUs
+- **Storage Allocation:** 1TB NVMe provides ample space for multiple VMs, snapshots, and backup retention
 - **Concurrent VM Support:**
   - pfSense VM (1 vCPU, 2GB RAM)
   - Azure AD Connect VM (2 vCPUs, 4GB RAM)
-  - Additional lab environments (multiple lightweight VMs)
+  - Additional lab environments (m### Hardware Specifications Comparison
 
+| Component | Current Proxmox Host | Dell Precision 7710 | Improvement Factor |
+|-----------|---------------------|---------------------|-------------------|
+| **CPU** | Intel i3-2350M @ 2.30GHz | Intel i7-6920HQ @ 2.60GHz | 4 cores vs 2 cores |
+| **Architecture** | 2 cores, 4 threads | 4 cores, 8 threads | **2x cores, 2x threads** |
+| **CPU Generation** | 2nd Gen (Sandy Bridge, 2011) | 6th Gen (Skylake, 2015) | **4 generations newer** |
+| **Total RAM** | 7.7GB DDR3 | 32GB DDR4 | **4.2x memory capacity** |
+| **Memory Type** | DDR3-1333 | DDR4-2133/2400 | **~80% faster memory** |
+| **Storage**        | 240GB SSD                    | 1TB NVMe SSD (upgraded)      | **4x storage capacity**  |
 ### Performance Impact Analysis
 
 | Metric | Current State | Expected Improvement |
@@ -71,13 +71,14 @@ The current environment, while functional for basic Active Directory operations,
 | **VM Boot Time** | Baseline measurement needed | Faster with NVMe storage |
 | **Domain Controller Response** | 4.18% CPU utilization | More responsive with better CPU |
 | **Concurrent Operations** | Single VM constraint | Multiple VMs without performance degradation |
-| **Storage I/O** | HDD/SATA limitations | NVMe performance gains |
+| **Storage I/O** | 240GB SSD SATA limitations | 1TB NVMe performance gains |
 | **Memory Pressure** | 41.94% utilization in constrained environment | Ample memory for caching and performance |
 
 *Note: Baseline performance metrics from current environment documented in [Guide 1, Figure 8](/posts/ad-migration-bkup). Post-migration performance comparison will be documented in Guide 4 after the Proxmox installation with actual measured improvements.*
 
 ### Strategic Advantages:
 - **Performance:** Significant CPU and memory improvements enabling concurrent VM operations
+- **Storage Expansion:** 4x storage capacity increase (256GB to 1TB NVMe) enabling multiple VM storage without space constraints
 - **Scalability:** Sufficient resources for hybrid Azure AD implementations and multiple service VMs
 - **Industry Alignment:** Hardware specifications matching entry-level server environments
 - **Future-Proofing:** Expansion capabilities for additional learning scenarios
