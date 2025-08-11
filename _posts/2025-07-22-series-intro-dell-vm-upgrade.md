@@ -37,8 +37,10 @@ The current environment, while functional for basic Active Directory operations,
 
 ## The Strategic Solution: Dell Precision 7710 Migration
 
-Add an aditional HDD/SSD | Upgraded to 1TB NVMe SSD | **3-5x faster I/O** |
-| **VM Capacity** | Single VM at 49% utilization | Multiple concurrent VMs | **5+ VMs simultaneously** |
+| Component   | Current Setup                | Upgraded Setup          | Improvement                       |
+| ----------- | ---------------------------- | ----------------------- | --------------------------------- |
+| Storage     | 240GB SSD                    | 1TB NVMe SSD            | **4x capacity + 3-5x faster I/O** |
+| VM Capacity | Single VM at 49% utilization | Multiple concurrent VMs | **5+ VMs simultaneously**         |
 
 ### Current Resource Allocation vs. Available Capacity
 
@@ -54,7 +56,7 @@ Add an aditional HDD/SSD | Upgraded to 1TB NVMe SSD | **3-5x faster I/O** |
 - **Concurrent VM Support:**
   - pfSense VM (1 vCPU, 2GB RAM)
   - Azure AD Connect VM (2 vCPUs, 4GB RAM)
-  - Additional lab environments (m### Hardware Specifications Comparison
+  - Additional lab environments Hardware Specifications Comparison
 
 | Component | Current Proxmox Host | Dell Precision 7710 | Improvement Factor |
 |-----------|---------------------|---------------------|-------------------|

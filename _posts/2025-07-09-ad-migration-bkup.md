@@ -244,23 +244,34 @@ Following the **3-2-1 backup rule**, an additional copy of the backup file was c
 
 ---
 
+---
+
+## Preparing for the New Hardware
+
+With the Domain Controller VM successfully backed up, checksum verified, and stored, preparations for the hardware upgrade were now ready. The next steps would involve researching the manufacturer's website for properly accessing and upgrading the NVMe, and determining UEFI/BIOS steps for verifying successful NVMe recognition and changing the boot order (since leaving the original 256GB NVMe installed – new one is going into 2nd NVMe slot).
+
+![Installing NVMe Drive in Dell Precision 7710](/assets/img/posts/ad-migration-bkup/ad-migration-bkup-img13.jpg)
+*Figure 13: Dell Precision 7710 opened for NVMe installation, showing the second M.2 slot ready for the new drive.*
+
+> **Tip: Always Consult Official Documentation First**
+>
+> While there are plenty of tutorials, articles, and videos on the internet, always refer to the official manufacturer's documentation as your first source. Dell's Service Manual provides precise specifications for accessing internal components and proper installation procedures.
+{: .prompt-tip}
+
+While awaiting delivery of the new Dell Precision & NVMe hardware, physically installing the NVMe drives was completed. After which, performing a bare-metal Proxmox installation on the new system will be outlined in the next guide.
+
+---
+
 ## Key Learnings & Takeaways
 
-This comprehensive backup process demonstrated several critical enterprise IT skills and best practices.
+This comprehensive backup process provided an opportunity to apply enterprise-level data protection and change management practices in preparation for a critical infrastructure migration.
 
-**Technical Skills Demonstrated:**
-* **Hypervisor Management:** Executed Proxmox `vzdump` backups using snapshot mode for data consistency.
-* **Active Directory Health Assessment:** Utilized `dcdiag` to perform comprehensive DC health checks.
-* **System Documentation:** Created detailed technical documentation with baseline metrics and network configurations for migration planning.
-* **Data Integrity Verification:** Implemented multi-layer verification using `zstd` testing and SHA256 checksums.
-* **Secure File Transfer:** Executed secure file transfers using the SCP protocol.
-* **Risk Management:** Applied ITSM best practices by developing downtime and rollback strategies.
+* **Pre-Migration Documentation is Non-Negotiable:** The importance of thoroughly documenting the current state before any major change cannot be overstated. Capturing network configurations, performance baselines, and system health provides essential reference points for troubleshooting and verification. This systematic approach mirrors enterprise change management processes where documentation is required for rollback procedures and post-implementation reviews.
 
-**Enterprise Best Practices Applied:**
-* **3-2-1 Backup Strategy:** Implemented multiple backup copies across different storage mediums.
-* **Change Management:** Documented the pre-migration state and developed rollback procedures.
-* **Infrastructure Assessment:** Performed health checks before a critical system migration.
+* **Understanding Backup Methods and Their Applications:** Working with Proxmox `vzdump` reinforced the distinction between hypervisor-level and in-guest backups. For VM migrations between Proxmox hosts, hypervisor-level backups capture the complete VM state, including virtual hardware configurations, making them ideal for infrastructure moves. This knowledge directly applies to enterprise virtualization environments using VMware vSphere or Microsoft Hyper-V.
 
-This guide establishes the foundation for the next phase, where the backup created here will be restored to the new, more powerful hardware platform.
+* **Data Integrity Verification is Multi-Layered:** Implementing both compression integrity testing (`zstd -t`) and cryptographic checksums (SHA256) demonstrated that proper backup verification involves multiple validation methods. The combination ensures both file completeness and transfer accuracy—critical skills for any role involving data protection and disaster recovery.
+
+* **Active Directory Health Assessment Before Major Changes:** Using `dcdiag` to validate DC health before migration reinforced the importance of proactive system monitoring. While some warnings were identified, the process demonstrated how to triage issues appropriately—addressing critical problems immediately while documenting non-critical items for future resolution. This balance between immediate action and strategic planning is essential in production environments.
 
 **Next in Series:** [Installing Proxmox VE and Initial Network Configuration on the Dell Precision 7710](/posts/proxmox-dell-install)
