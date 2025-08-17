@@ -26,7 +26,8 @@ Given the project timeline, I started the Proxmox installation before all my net
     * After researching the requirements for both Proxmox and Microsoft Server, I repurposed an old laptop for the project.
     * The laptop met the minimum requirements but had a slow HDD. For better performance, and to follow suggested hardware requirements, I removed the HDD and replaced it with a new **SSD**.
     * I also upgraded the memory to the maximum supported by the motherboard. `8GB`.
-2.  **Creating a Bootable Proxmox USB Drive:**
+2.  **Creating a Bootable Proxmox USB Drive:** 
+{: #creating-bootable-usb}
     * First, I downloaded the latest stable Proxmox VE `.iso` file from the official [Proxmox downloads page](https://www.proxmox.com/en/downloads).
     * Since my laptops lack CD drives, I used a tool to write the ISO file to a flash drive. I chose **Rufus**, a utility I have previous experience with.
     * After opening Rufus, I clicked <kbd>SELECT</kbd> and chose the Proxmox `.iso` file I had downloaded.

@@ -164,14 +164,25 @@ This project is documented through interconnected guides, each focusing on speci
 - Configure Azure AD Connect for on-premises to cloud identity synchronization
 - Test hybrid authentication and directory synchronization functionality
 
+### Phase 5: Implementing Comprehensive Backup Strategy
+
+**Guide 6: Implementing Comprehensive Backup Strategy for Proxmox Home Lab Environment**
+
+- Configure automated VM backups to the secondary NVMe storage provisioned in Guide 2, ensuring separation from primary system volumes
+- Set up backup scheduling and retention policies
+- Document backup verification and restore procedures
+Implement backup monitoring and alerting
+
 ## Technical Skills Demonstrated
 
 This series showcases practical application of skills directly relevant to IT support and system administration roles:
 
 ### Infrastructure Management
+
 - **Virtualization:** Proxmox hypervisor deployment, VM migration, and resource optimization
 - **Active Directory:** Domain controller management, health monitoring, and performance tuning
 - **Network Administration:** VLAN configuration, routing protocols, and security implementation
+- **Storage Architecture:** Strategic implementation of dedicated NVMe backup storage to isolate system backups from primary volumes, supporting enterprise-grade recovery planning and performance optimization
 
 ### Enterprise Technologies
 - **Cloud Integration:** Hybrid Azure AD setup and directory synchronization
