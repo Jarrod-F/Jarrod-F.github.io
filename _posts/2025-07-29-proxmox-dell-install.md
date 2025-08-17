@@ -387,4 +387,4 @@ The successful Proxmox installation established a robust foundation for the rema
 
 ---
 
-**Next in Series:** [Guide 3: Deploying and Configuring pfSense as Home Lab's Primary Firewall and Router](/posts/pfsense-deployment)
+<!-- **Next in Series:** [Guide 3: Deploying and Configuring pfSense as Home Lab's Primary Firewall and Router](/posts/pfsense-deployment) -->
